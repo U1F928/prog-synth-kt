@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ParseProgramTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-21T15:40:26.343Z" hostname="none" time="0.048">
+  <properties/>
+  <testcase name="test parsing of a subroutine()" classname="ParseProgramTest" time="0.048"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
