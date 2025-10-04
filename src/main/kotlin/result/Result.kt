@@ -47,6 +47,15 @@ fun <S, E> isErr(result: Result<S, E>): Boolean {
     }
 }
 
+inline fun <S, reified E> Result<S, E>.getErrOrThrow(): E {
+    check(this is Err<E>) {
+        """
+        $this is not an Err<${E::class.qualifiedName}> result!   
+        """.trimIndent()
+    }
+    return this.value
+}
+
 inline fun <reified S, E> Result<S, E>.getOrThrow(): S {
     check(this is Ok<S>) {
         """
