@@ -3,6 +3,8 @@ package parseInstruction
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import result.getOrThrow
+import result.toErr
 
 class ParseInstructionTest {
     @Nested
@@ -19,18 +21,18 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseStartSubroutineDefinition(words = input)
+            val result = parseStartSubroutineDefinition(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
-                InstructionParseResult.Success(
+                InstructionParseResult.Success<StartSubroutine>(
                     remainingWords =
                         listOf(
                             InputWord("remaining"),
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.StartSubroutine(
+                        StartSubroutine(
                             subroutineName = SubroutineName("mySubroutineName"),
                         ),
                 ),
@@ -49,7 +51,7 @@ class ParseInstructionTest {
             val result = parseStartSubroutineDefinition(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -65,7 +67,7 @@ class ParseInstructionTest {
             val result = parseStartSubroutineDefinition(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -82,17 +84,17 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseEndSubroutine(words = input)
+            val result = parseEndSubroutine(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
-                InstructionParseResult.Success(
+                InstructionParseResult.Success<EndSubroutine>(
                     remainingWords =
                         listOf(
                             InputWord("remaining"),
                             InputWord("words"),
                         ),
-                    parsedInstruction = ParsedInstruction.EndSubroutine,
+                    parsedInstruction = EndSubroutine,
                 ),
             )
         }
@@ -109,7 +111,7 @@ class ParseInstructionTest {
             val result = parseStartSubroutineDefinition(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -125,7 +127,7 @@ class ParseInstructionTest {
             val result = parseStartSubroutineDefinition(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -143,7 +145,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseFromNode(words = input)
+            val result = parseFromNode(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -154,7 +156,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.Transition.FromNode(
+                        Transition.FromNode(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -173,7 +175,7 @@ class ParseInstructionTest {
             val result = parseFromNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -189,7 +191,7 @@ class ParseInstructionTest {
             val result = parseFromNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -207,7 +209,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseGotoNode(words = input)
+            val result = parseGotoNode(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -218,7 +220,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.Transition.GotoNode(
+                        Transition.GotoNode(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -237,7 +239,7 @@ class ParseInstructionTest {
             val result = parseGotoNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -253,7 +255,7 @@ class ParseInstructionTest {
             val result = parseGotoNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -271,7 +273,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseNodeDeclaration(words = input)
+            val result = parseBasicNodeDeclaration(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -282,7 +284,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.BasicNodeDeclaration(
+                        BasicNodeDeclaration(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -298,10 +300,10 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseNodeDeclaration(words = input)
+            val result = parseBasicNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -314,10 +316,10 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseNodeDeclaration(words = input)
+            val result = parseBasicNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -347,7 +349,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.EntryNodeDeclaration(
+                        EntryNodeDeclaration(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -364,10 +366,10 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseNodeDeclaration(words = input)
+            val result = parseBasicNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -402,7 +404,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseExitNodeDeclaration(words = input)
+            val result = parseExitNodeDeclaration(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -413,7 +415,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.ExitNodeDeclaration(
+                        ExitNodeDeclaration(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -433,7 +435,7 @@ class ParseInstructionTest {
             val result = parseExitNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -469,7 +471,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseCallNodeDeclaration(words = input)
+            val result = parseCallNodeDeclaration(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -480,7 +482,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.CallNodeDeclaration(
+                        CallNodeDeclaration(
                             nodeName = NodeName("myNodeName"),
                             subroutineName = SubroutineName("mySubroutineName"),
                         ),
@@ -502,7 +504,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -510,7 +512,7 @@ class ParseInstructionTest {
             // given
             val input =
                 listOf(
-                    InputWord("SUBROUTINE"),
+                    InputWord("CALL"),
                     InputWord("NODE"),
                     InputWord("MyNode"),
                     InputWord("mySubroutine"),
@@ -520,7 +522,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -538,7 +540,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -557,7 +559,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseOnInputStack(words = input)
+            val result = parseOnInputStack(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -568,7 +570,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.Transition.OnInputStack(
+                        Transition.OnInputStack(
                             conditionalValue = 123.toByte(),
                         ),
                 ),
@@ -588,7 +590,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseOnInputStack(words = input)
+            val result = parseOnInputStack(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -599,7 +601,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.Transition.OnInputStack(
+                        Transition.OnInputStack(
                             conditionalValue = 'a'.code.toByte(),
                         ),
                 ),
@@ -619,7 +621,7 @@ class ParseInstructionTest {
             val result = parseOnInputStack(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -635,7 +637,7 @@ class ParseInstructionTest {
             val result = parseOnInputStack(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -658,23 +660,23 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseTransition(words = input)
+            val result = parseTransition(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
-                InstructionParseResult.Success(
+                InstructionParseResult.Success<Transition>(
                     remainingWords =
                         listOf(
                             InputWord("remaining"),
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.Transition(
+                        Transition(
                             fromNode = NodeName("myNodeA"),
                             toNode = NodeName("myNodeB"),
                             conditions =
                                 listOf(
-                                    ParsedInstruction.Transition.OnInputStack(
+                                    Transition.OnInputStack(
                                         conditionalValue = 123.toByte(),
                                     ),
                                 ),
@@ -697,7 +699,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -715,7 +717,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
 
         @Test
@@ -733,7 +735,7 @@ class ParseInstructionTest {
             val result = parseCallNodeDeclaration(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 }

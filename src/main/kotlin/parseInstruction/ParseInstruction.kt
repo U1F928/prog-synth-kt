@@ -1,106 +1,126 @@
 package parseInstruction
 
-fun parseStartSubroutineDefinition(words: List<InputWord>): InstructionParseResult {
+import result.Err
+import result.Ok
+import result.Result
+import result.err
+import result.flatMap
+import result.isErr
+import result.isOk
+import result.map
+import result.toErr
+import result.toOk
+
+fun parseStartSubroutineDefinition(
+    words: List<InputWord>,
+): Result<InstructionParseResult.Success<StartSubroutine>, InstructionParseResult.Error> {
     if (words.size < 2) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != ParsedInstruction.StartSubroutine.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value != StartSubroutine.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val subroutineName = words[1].value
     if (!isValidObjectName(subroutineName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    val startSubroutine = ParsedInstruction.StartSubroutine(SubroutineName(subroutineName))
+    val startSubroutine = StartSubroutine(SubroutineName(subroutineName))
     val remainingWords = words.drop(2)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = startSubroutine,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = startSubroutine,
+        ).toOk()
 }
 
-fun parseEndSubroutine(words: List<InputWord>): InstructionParseResult {
+fun parseEndSubroutine(words: List<InputWord>): Result<InstructionParseResult.Success<EndSubroutine>, InstructionParseResult.Error> {
     if (words.size < 1) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != ParsedInstruction.EndSubroutine.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value != EndSubroutine.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
-    return InstructionParseResult.Success(
-        remainingWords = words.drop(1),
-        parsedInstruction = ParsedInstruction.EndSubroutine,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = words.drop(1),
+            parsedInstruction = EndSubroutine,
+        ).toOk()
 }
 
-fun parseFromNode(words: List<InputWord>): InstructionParseResult {
+fun parseFromNode(words: List<InputWord>): Result<InstructionParseResult.Success<Transition.FromNode>, InstructionParseResult.Error> {
     if (words.size < 2) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != ParsedInstruction.Transition.FromNode.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value != Transition.FromNode.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[1].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = ParsedInstruction.Transition.FromNode(NodeName(nodeName))
+    val fromNode = Transition.FromNode(NodeName(nodeName))
     val remainingWords = words.drop(2)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = fromNode,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = fromNode,
+        ).toOk()
 }
 
-fun parseGotoNode(words: List<InputWord>): InstructionParseResult {
+fun parseGotoNode(words: List<InputWord>): Result<InstructionParseResult.Success<Transition.GotoNode>, InstructionParseResult.Error> {
     if (words.size < 2) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != ParsedInstruction.Transition.GotoNode.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value != Transition.GotoNode.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[1].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = ParsedInstruction.Transition.GotoNode(NodeName(nodeName))
+    val fromNode = Transition.GotoNode(NodeName(nodeName))
     val remainingWords = words.drop(2)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = fromNode,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = fromNode,
+        ).toOk()
 }
 
-fun parseNodeDeclaration(words: List<InputWord>): InstructionParseResult {
+fun parseBasicNodeDeclaration(
+    words: List<InputWord>,
+): Result<InstructionParseResult.Success<BasicNodeDeclaration>, InstructionParseResult.Error> {
     if (words.size < 2) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != ParsedInstruction.BasicNodeDeclaration.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value != BasicNodeDeclaration.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[1].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = ParsedInstruction.BasicNodeDeclaration(NodeName(nodeName))
+    val fromNode = BasicNodeDeclaration(NodeName(nodeName))
     val remainingWords = words.drop(2)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = fromNode,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = fromNode,
+        ).toOk()
 }
 
 fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
@@ -108,7 +128,7 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
         return InstructionParseResult.Error
     }
 
-    if (words[0].value + " " + words[1].value != ParsedInstruction.EntryNodeDeclaration.STRING_NAME) {
+    if (words[0].value + " " + words[1].value != EntryNodeDeclaration.STRING_NAME) {
         return InstructionParseResult.Error
     }
 
@@ -117,7 +137,7 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
         return InstructionParseResult.Error
     }
 
-    val fromNode = ParsedInstruction.EntryNodeDeclaration(NodeName(nodeName))
+    val fromNode = EntryNodeDeclaration(NodeName(nodeName))
     val remainingWords = words.drop(3)
     return InstructionParseResult.Success(
         remainingWords = remainingWords,
@@ -125,111 +145,115 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
     )
 }
 
-fun parseExitNodeDeclaration(words: List<InputWord>): InstructionParseResult {
+fun parseExitNodeDeclaration(
+    words: List<InputWord>,
+): Result<InstructionParseResult.Success<ExitNodeDeclaration>, InstructionParseResult.Error> {
     if (words.size < 3) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value + " " + words[1].value != ParsedInstruction.ExitNodeDeclaration.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value + " " + words[1].value != ExitNodeDeclaration.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[2].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = ParsedInstruction.ExitNodeDeclaration(NodeName(nodeName))
+    val fromNode = ExitNodeDeclaration(NodeName(nodeName))
     val remainingWords = words.drop(3)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = fromNode,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = fromNode,
+        ).toOk()
 }
 
-fun parseCallNodeDeclaration(words: List<InputWord>): InstructionParseResult {
+fun parseCallNodeDeclaration(
+    words: List<InputWord>,
+): Result<InstructionParseResult.Success<CallNodeDeclaration>, InstructionParseResult.Error> {
     if (words.size < 4) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value + " " + words[1].value != ParsedInstruction.CallNodeDeclaration.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value + " " + words[1].value != CallNodeDeclaration.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[2].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
     val subroutineName = words[3].value
     if (!isValidObjectName(subroutineName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
     val callNodeDeclaration =
-        ParsedInstruction.CallNodeDeclaration(
+        CallNodeDeclaration(
             nodeName = NodeName(nodeName),
             subroutineName = SubroutineName(subroutineName),
         )
 
     val remainingWords = words.drop(4)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = callNodeDeclaration,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = callNodeDeclaration,
+        ).toOk()
 }
 
-fun parseTransition(words: List<InputWord>): InstructionParseResult {
-    val result =
-        parseFromNode(words)
-            .onSuccess { parseOnInputStack(it) }
-            .onSuccess { parseGotoNode(it) }
+fun parseTransition(words: List<InputWord>): Result<InstructionParseResult.Success<Transition>, InstructionParseResult.Error> {
+    val fromNode = parseFromNode(words)
+    if (isErr(fromNode)) return InstructionParseResult.Error.toErr()
 
-    return when (result) {
-        is ChainedParsingResult.AllSuccessful -> {
-            val parsedInstructions = result.parsedInstructions
-            val transition =
-                ParsedInstruction.Transition(
-                    fromNode = (parsedInstructions[0].parsedInstruction as ParsedInstruction.Transition.FromNode).nodeName,
-                    conditions =
-                        listOf(
-                            parsedInstructions[1].parsedInstruction as ParsedInstruction.Transition.OnInputStack,
-                        ),
-                    toNode = (parsedInstructions[2].parsedInstruction as ParsedInstruction.Transition.GotoNode).nodeName,
-                )
-            InstructionParseResult.Success(
-                remainingWords = words.drop(3 + 2 * 2),
-                parsedInstruction = transition,
-            )
-        }
-        is ChainedParsingResult.FailedToParse -> {
-            InstructionParseResult.Error
-        }
-    }
+    val onInput = parseOnInputStack(fromNode.value.remainingWords)
+    if (isErr(onInput)) return InstructionParseResult.Error.toErr()
+
+    val gotoNode = parseGotoNode(onInput.value.remainingWords)
+    if (isErr(gotoNode)) return InstructionParseResult.Error.toErr()
+
+    val transition =
+        Transition(
+            fromNode = fromNode.value.parsedInstruction.nodeName,
+            conditions = listOf(onInput.value.parsedInstruction),
+            toNode = gotoNode.value.parsedInstruction.nodeName,
+        )
+
+    return InstructionParseResult
+        .Success(
+            remainingWords = words.drop(3 + 2 * 2),
+            parsedInstruction = transition,
+        ).toOk()
 }
 
-fun parseOnInputStack(words: List<InputWord>): InstructionParseResult {
+fun parseOnInputStack(
+    words: List<InputWord>,
+): Result<InstructionParseResult.Success<Transition.OnInputStack>, InstructionParseResult.Error> {
     if (words.size < 3) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value + " " + words[1].value != ParsedInstruction.Transition.OnInputStack.STRING_NAME) {
-        return InstructionParseResult.Error
+    if (words[0].value + " " + words[1].value != Transition.OnInputStack.STRING_NAME) {
+        return InstructionParseResult.Error.toErr()
     }
 
     val conditionalByte = parseConditionalByte(words[2])
 
-    if (conditionalByte == null) return InstructionParseResult.Error
+    if (isErr(conditionalByte)) return InstructionParseResult.Error.toErr()
 
     val remainingWords = words.drop(3)
-    val onInputStack = ParsedInstruction.Transition.OnInputStack(conditionalValue = conditionalByte)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = onInputStack,
-    )
+    val onInputStack = Transition.OnInputStack(conditionalValue = conditionalByte.value)
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = onInputStack,
+        ).toOk()
 }
 
-private fun parseConditionalByte(conditionalValue: InputWord): Byte? {
+private fun parseConditionalByte(conditionalValue: InputWord): Result<Byte, Unit> {
     if (conditionalValue.value.length == 1) {
         val byteValue =
             conditionalValue.value
@@ -237,28 +261,24 @@ private fun parseConditionalByte(conditionalValue: InputWord): Byte? {
                 .code
                 .toByte()
 
-        return byteValue
+        return byteValue.toOk()
     }
 
     if (conditionalValue.value.toByteOrNull() != null) {
-        return conditionalValue.value.toByte()
+        return conditionalValue.value.toByte().toOk()
     }
 
-    if (getCharInsideQuotesAsByte(conditionalValue.value) != null) {
-        return getCharInsideQuotesAsByte(conditionalValue.value)
-    }
-
-    return null
+    return getCharInsideQuotesAsByte(conditionalValue.value)
 }
 
-private fun getCharInsideQuotesAsByte(string: String): Byte? = getCharInsideQuotes(string)?.code?.toByte()
+private fun getCharInsideQuotesAsByte(string: String) = getCharInsideQuotes(string).map { it.code.toByte() }
 
-private fun getCharInsideQuotes(string: String): Char? {
-    if (string.length != 3) return null
+private fun getCharInsideQuotes(string: String): Result<Char, Unit> {
+    if (string.length != 3) return err()
 
     if (string[0] == '\'' && string[2] == '\'') {
-        return string[1]
+        return string[1].toOk()
     } else {
-        return null
+        return err()
     }
 }

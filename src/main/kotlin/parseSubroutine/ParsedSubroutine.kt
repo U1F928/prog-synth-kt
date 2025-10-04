@@ -1,16 +1,21 @@
 package parseSubroutine
 
+import parseInstruction.BasicNodeDeclaration
+import parseInstruction.EntryNodeDeclaration
+import parseInstruction.ExitNodeDeclaration
 import parseInstruction.ParsedInstruction
+import parseInstruction.StartSubroutine
+import parseInstruction.Transition
 
 // TODO
 sealed interface ParsedSubroutine {
     data class Success(
-        val startSubroutine: ParsedInstruction.StartSubroutine,
-        val entryNodeDeclaration: ParsedInstruction.EntryNodeDeclaration,
-        val exitNodeDeclaration: ParsedInstruction.ExitNodeDeclaration,
-        val nodeDeclarations: List<ParsedInstruction.BasicNodeDeclaration>,
-        val transitions: List<ParsedInstruction.Transition>,
+        val startSubroutine: StartSubroutine,
+        val entryNodeDeclaration: EntryNodeDeclaration,
+        val exitNodeDeclaration: ExitNodeDeclaration,
+        val nodeDeclarations: List<BasicNodeDeclaration>,
+        val transitions: List<Transition>,
     )
 
-    data object Error: ParsedSubroutine
+    data object Error : ParsedSubroutine
 }

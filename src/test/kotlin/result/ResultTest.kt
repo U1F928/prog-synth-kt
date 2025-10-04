@@ -17,8 +17,8 @@ class ResultTest {
             }
 
         x
-            .mapOk { it + "a" }
-            .mapOk { if (it == "yay a") it + "c" else Err("nope") }
+            .map { it + "a" }
+            .map { if (it == "yay a") it + "c" else Err("nope") }
     }
 
     @Test
@@ -26,7 +26,10 @@ class ResultTest {
         val nestedResult: Result<Result<String, String>, String> = Ok(value = Ok(value = "hello"))
 
         // when
-        val r = nestedResult.flatMapOk { it + " world!" }
+        val r =
+            nestedResult
+                .flatMap { it }
+                .map { it }
 
         // then
         check(r is Ok)
