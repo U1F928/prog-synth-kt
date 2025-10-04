@@ -1,7 +1,14 @@
 package parseSubroutine
 
 import parseInstruction.InputWord
-import parseInstruction.parseStartSubroutineDefinition
 
-// fun parseSubroutine(inputWords: List<InputWord>): ParsedSubroutine {
-// }
+fun parseSubroutine(inputWords: List<InputWord>): ParsedSubroutine {
+    val startSubroutine
+    ParsedSubroutine.Success(
+        subroutineStart = TODO(),
+        entryNodeDeclaration = TODO(),
+        exitNodeDeclaration = TODO(),
+        nodeDeclarations = TODO(),
+        transitions = TODO(),
+    )
+}

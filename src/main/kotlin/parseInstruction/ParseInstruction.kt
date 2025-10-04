@@ -2,21 +2,19 @@ package parseInstruction
 
 import result.Result
 import result.err
-import result.flatMap
 import result.isErr
-import result.isOk
 import result.map
 import result.toErr
 import result.toOk
 
 fun parseStartSubroutineDefinition(
     words: List<InputWord>,
-): Result<InstructionParseResult.Success<StartSubroutine>, InstructionParseResult.Error> {
+): Result<InstructionParseResult.Success<SubroutineStart>, InstructionParseResult.Error> {
     if (words.size < 2) {
         return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != StartSubroutine.STRING_NAME) {
+    if (words[0].value != SubroutineStart.STRING_NAME) {
         return InstructionParseResult.Error.toErr()
     }
 
@@ -25,12 +23,12 @@ fun parseStartSubroutineDefinition(
         return InstructionParseResult.Error.toErr()
     }
 
-    val startSubroutine = StartSubroutine(SubroutineName(subroutineName))
+    val subroutineStart = SubroutineStart(SubroutineName(subroutineName))
     val remainingWords = words.drop(2)
     return InstructionParseResult
         .Success(
             remainingWords = remainingWords,
-            parsedInstruction = startSubroutine,
+            parsedInstruction = subroutineStart,
         ).toOk()
 }
 

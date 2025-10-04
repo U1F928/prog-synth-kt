@@ -2,7 +2,7 @@ package parseInstruction
 
 sealed interface ParsedInstruction
 
-data class StartSubroutine(
+data class SubroutineStart(
     val subroutineName: SubroutineName,
 ) : ParsedInstruction {
     companion object {

@@ -25,14 +25,14 @@ class ParseInstructionTest {
 
             // then
             assertThat(result).isEqualTo(
-                InstructionParseResult.Success<StartSubroutine>(
+                InstructionParseResult.Success<SubroutineStart>(
                     remainingWords =
                         listOf(
                             InputWord("remaining"),
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        StartSubroutine(
+                        SubroutineStart(
                             subroutineName = SubroutineName("mySubroutineName"),
                         ),
                 ),
