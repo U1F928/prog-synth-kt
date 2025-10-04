@@ -3,11 +3,11 @@ package parseSubroutine
 import parseInstruction.InputWord
 
 fun parseSubroutine(inputWords: List<InputWord>): ParsedSubroutine {
-    val startSubroutine
+    val subroutineStart
     ParsedSubroutine.Success(
         subroutineStart = TODO(),
-        entryNodeDeclaration = TODO(),
-        exitNodeDeclaration = TODO(),
+        entryNode = TODO(),
+        exitNode = TODO(),
         nodeDeclarations = TODO(),
         transitions = TODO(),
     )

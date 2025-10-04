@@ -284,7 +284,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        BasicNodeDeclaration(
+                        BasicNode(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -349,7 +349,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        EntryNodeDeclaration(
+                        EntryNode(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),
@@ -415,7 +415,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ExitNodeDeclaration(
+                        ExitNode(
                             nodeName = NodeName("myNodeName"),
                         ),
                 ),

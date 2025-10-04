@@ -1,8 +1,9 @@
 package parseSubroutine
 
-import parseInstruction.BasicNodeDeclaration
-import parseInstruction.EntryNodeDeclaration
-import parseInstruction.ExitNodeDeclaration
+import parseInstruction.BasicNode
+import parseInstruction.BodyNode
+import parseInstruction.EntryNode
+import parseInstruction.ExitNode
 import parseInstruction.SubroutineStart
 import parseInstruction.Transition
 
@@ -10,9 +11,9 @@ import parseInstruction.Transition
 sealed interface ParsedSubroutine {
     data class Success(
         val subroutineStart: SubroutineStart,
-        val entryNodeDeclaration: EntryNodeDeclaration,
-        val exitNodeDeclaration: ExitNodeDeclaration,
-        val nodeDeclarations: List<BasicNodeDeclaration>,
+        val entryNode: EntryNode,
+        val exitNode: ExitNode,
+        val nodeDeclarations: List<BodyNode>,
         val transitions: List<Transition>,
     )
 

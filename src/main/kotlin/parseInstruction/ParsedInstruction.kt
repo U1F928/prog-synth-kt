@@ -16,7 +16,7 @@ data object EndSubroutine : ParsedInstruction {
 
 sealed interface NodeDeclaration : ParsedInstruction
 
-data class EntryNodeDeclaration(
+data class EntryNode(
     val nodeName: NodeName,
 ) : NodeDeclaration {
     companion object {
@@ -24,7 +24,7 @@ data class EntryNodeDeclaration(
     }
 }
 
-data class ExitNodeDeclaration(
+data class ExitNode(
     val nodeName: NodeName,
 ) : NodeDeclaration {
     companion object {
@@ -32,18 +32,20 @@ data class ExitNodeDeclaration(
     }
 }
 
+sealed interface BodyNode : NodeDeclaration
+
 data class CallNodeDeclaration(
     val nodeName: NodeName,
     val subroutineName: SubroutineName,
-) : NodeDeclaration {
+) : BodyNode {
     companion object {
         const val STRING_NAME = "CALL NODE"
     }
 }
 
-data class BasicNodeDeclaration(
+data class BasicNode(
     val nodeName: NodeName,
-) : NodeDeclaration {
+) : BodyNode {
     companion object {
         const val STRING_NAME = "NODE"
     }

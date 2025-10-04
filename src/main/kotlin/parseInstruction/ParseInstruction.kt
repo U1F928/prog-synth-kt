@@ -94,14 +94,12 @@ fun parseGotoNode(words: List<InputWord>): Result<InstructionParseResult.Success
         ).toOk()
 }
 
-fun parseBasicNodeDeclaration(
-    words: List<InputWord>,
-): Result<InstructionParseResult.Success<BasicNodeDeclaration>, InstructionParseResult.Error> {
+fun parseBasicNodeDeclaration(words: List<InputWord>): Result<InstructionParseResult.Success<BasicNode>, InstructionParseResult.Error> {
     if (words.size < 2) {
         return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value != BasicNodeDeclaration.STRING_NAME) {
+    if (words[0].value != BasicNode.STRING_NAME) {
         return InstructionParseResult.Error.toErr()
     }
 
@@ -110,7 +108,7 @@ fun parseBasicNodeDeclaration(
         return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = BasicNodeDeclaration(NodeName(nodeName))
+    val fromNode = BasicNode(NodeName(nodeName))
     val remainingWords = words.drop(2)
     return InstructionParseResult
         .Success(
@@ -124,7 +122,7 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
         return InstructionParseResult.Error
     }
 
-    if (words[0].value + " " + words[1].value != EntryNodeDeclaration.STRING_NAME) {
+    if (words[0].value + " " + words[1].value != EntryNode.STRING_NAME) {
         return InstructionParseResult.Error
     }
 
@@ -133,7 +131,7 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
         return InstructionParseResult.Error
     }
 
-    val fromNode = EntryNodeDeclaration(NodeName(nodeName))
+    val fromNode = EntryNode(NodeName(nodeName))
     val remainingWords = words.drop(3)
     return InstructionParseResult.Success(
         remainingWords = remainingWords,
@@ -141,14 +139,12 @@ fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
     )
 }
 
-fun parseExitNodeDeclaration(
-    words: List<InputWord>,
-): Result<InstructionParseResult.Success<ExitNodeDeclaration>, InstructionParseResult.Error> {
+fun parseExitNodeDeclaration(words: List<InputWord>): Result<InstructionParseResult.Success<ExitNode>, InstructionParseResult.Error> {
     if (words.size < 3) {
         return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value + " " + words[1].value != ExitNodeDeclaration.STRING_NAME) {
+    if (words[0].value + " " + words[1].value != ExitNode.STRING_NAME) {
         return InstructionParseResult.Error.toErr()
     }
 
@@ -157,7 +153,7 @@ fun parseExitNodeDeclaration(
         return InstructionParseResult.Error.toErr()
     }
 
-    val fromNode = ExitNodeDeclaration(NodeName(nodeName))
+    val fromNode = ExitNode(NodeName(nodeName))
     val remainingWords = words.drop(3)
     return InstructionParseResult
         .Success(
