@@ -15,7 +15,11 @@ value class Err<out E>(
     val value: E,
 ) : Result<Nothing, E>
 
+fun <T> ok(value: T) = Ok(value)
+
 fun ok() = Ok(Unit)
+
+fun <T> err(value: T) = Err(value)
 
 fun err() = Err(Unit)
 
@@ -24,24 +28,24 @@ fun <T> T.toOk() = Ok(this)
 fun <T> T.toErr() = Err(this)
 
 @OptIn(ExperimentalContracts::class)
-fun <S, E> isOk(result: Result<S, E>): Boolean {
+fun <S, E> Result<S, E>.isOk(): Boolean {
     contract {
-        returns(true) implies (result is Ok)
-        returns(false) implies (result is Err)
+        returns(true) implies (this@isOk is Ok)
+        returns(false) implies (this@isOk is Err)
     }
-    return when (result) {
+    return when (this) {
         is Ok -> true
         is Err -> false
     }
 }
 
 @OptIn(ExperimentalContracts::class)
-fun <S, E> isErr(result: Result<S, E>): Boolean {
+fun <S, E> Result<S, E>.isErr(): Boolean {
     contract {
-        returns(true) implies (result is Err)
-        returns(false) implies (result is Ok)
+        returns(true) implies (this@isErr is Err)
+        returns(false) implies (this@isErr is Ok)
     }
-    return when (result) {
+    return when (this) {
         is Ok -> false
         is Err -> true
     }

@@ -30,7 +30,7 @@ class ResultTest {
         val result: Result<Unit, String> = ok()
 
         // when
-        val r = isOk(result)
+        val r = result.isOk()
 
         // then
         assertThat(r).isTrue
@@ -42,7 +42,7 @@ class ResultTest {
         val result: Result<String, Unit> = err()
 
         // when
-        val r = isOk(result)
+        val r = result.isOk()
 
         // then
         assertThat(r).isFalse
@@ -54,7 +54,7 @@ class ResultTest {
         val result: Result<String, Unit> = err()
 
         // when
-        val r = isErr(result)
+        val r = result.isErr()
 
         // then
         assertThat(r).isTrue
@@ -66,7 +66,7 @@ class ResultTest {
         val result: Result<Unit, String> = ok()
 
         // when
-        val r = isErr(result)
+        val r = result.isErr()
 
         // then
         assertThat(r).isFalse
@@ -79,7 +79,7 @@ class ResultTest {
         val result: Result<String, Unit> = Ok(message)
 
         // when & then
-        if (isOk(result)) {
+        if (result.isOk()) {
             assertThat(result.value).isEqualTo(message)
         }
     }
@@ -91,7 +91,7 @@ class ResultTest {
         val result: Result<Unit, String> = Err(message)
 
         // when & then
-        if (!isOk(result)) {
+        if (!result.isOk()) {
             assertThat(result.value).isEqualTo(message)
         }
     }
@@ -103,7 +103,7 @@ class ResultTest {
         val result: Result<Unit, String> = Err(message)
 
         // when & then
-        if (isErr(result)) {
+        if (result.isErr()) {
             assertThat(result.value).isEqualTo(message)
         }
     }
@@ -115,7 +115,7 @@ class ResultTest {
         val result: Result<String, Unit> = Ok(message)
 
         // when & then
-        if (!isErr(result)) {
+        if (!result.isErr()) {
             assertThat(result.value).isEqualTo(message)
         }
     }

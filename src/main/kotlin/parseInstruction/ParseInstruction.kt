@@ -1,7 +1,5 @@
 package parseInstruction
 
-import result.Err
-import result.Ok
 import result.Result
 import result.err
 import result.flatMap
@@ -207,13 +205,13 @@ fun parseCallNodeDeclaration(
 
 fun parseTransition(words: List<InputWord>): Result<InstructionParseResult.Success<Transition>, InstructionParseResult.Error> {
     val fromNode = parseFromNode(words)
-    if (isErr(fromNode)) return InstructionParseResult.Error.toErr()
+    if (fromNode.isErr()) return InstructionParseResult.Error.toErr()
 
     val onInput = parseOnInputStack(fromNode.value.remainingWords)
-    if (isErr(onInput)) return InstructionParseResult.Error.toErr()
+    if (onInput.isErr()) return InstructionParseResult.Error.toErr()
 
     val gotoNode = parseGotoNode(onInput.value.remainingWords)
-    if (isErr(gotoNode)) return InstructionParseResult.Error.toErr()
+    if (gotoNode.isErr()) return InstructionParseResult.Error.toErr()
 
     val transition =
         Transition(
@@ -242,7 +240,7 @@ fun parseOnInputStack(
 
     val conditionalByte = parseConditionalByte(words[2])
 
-    if (isErr(conditionalByte)) return InstructionParseResult.Error.toErr()
+    if (conditionalByte.isErr()) return InstructionParseResult.Error.toErr()
 
     val remainingWords = words.drop(3)
     val onInputStack = Transition.OnInputStack(conditionalValue = conditionalByte.value)
