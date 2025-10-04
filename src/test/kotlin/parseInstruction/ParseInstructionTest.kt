@@ -465,6 +465,7 @@ class ParseInstructionTest {
                     "CALL",
                     "NODE",
                     "myNodeName",
+                    "OF",
                     "mySubroutineName",
                     "remaining",
                     "words",
@@ -482,7 +483,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        CallNodeDeclaration(
+                        CallNode(
                             nodeName = NodeName("myNodeName"),
                             subroutineName = SubroutineName("mySubroutineName"),
                         ),
@@ -491,11 +492,11 @@ class ParseInstructionTest {
         }
 
         @Test
-        fun `return error when not enough words for a EntryNode instruction`() {
+        fun `return error when not enough words for a CallNode instruction`() {
             // given
             val input =
                 listOf(
-                    InputWord("SUBROUTINE"),
+                    InputWord("CALL"),
                     InputWord("NODE"),
                     InputWord("myNodeName"),
                 )
@@ -534,6 +535,24 @@ class ParseInstructionTest {
                     InputWord("NODE"),
                     InputWord("myNode"),
                     InputWord("MySubroutine"),
+                )
+
+            // when
+            val result = parseCallNode(words = input)
+
+            // then
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+        }
+
+        @Test
+        fun `return error when there is missing OF keyword`() {
+            // given
+            val input =
+                listOf(
+                    InputWord("SUBROUTINE"),
+                    InputWord("NODE"),
+                    InputWord("myNode"),
+                    InputWord("mySubroutine"),
                 )
 
             // when

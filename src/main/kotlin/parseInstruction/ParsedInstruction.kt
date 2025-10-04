@@ -34,7 +34,7 @@ data class ExitNode(
 
 sealed interface BodyNode : NodeDeclaration
 
-data class CallNodeDeclaration(
+data class CallNode(
     val nodeName: NodeName,
     val subroutineName: SubroutineName,
 ) : BodyNode {
@@ -54,7 +54,7 @@ data class BasicNode(
 data class Transition(
     val fromNode: NodeName,
     val toNode: NodeName,
-    val conditions: List<TransitionCondition>,
+    val conditions: List<OnInputStack>,
 ) : ParsedInstruction {
     data class FromNode(
         val nodeName: NodeName,

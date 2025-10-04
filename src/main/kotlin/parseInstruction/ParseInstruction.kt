@@ -161,12 +161,12 @@ fun parseExitNode(words: List<InputWord>): Result<InstructionParseResult.Success
         ).toOk()
 }
 
-fun parseCallNode(words: List<InputWord>): Result<InstructionParseResult.Success<CallNodeDeclaration>, InstructionParseResult.Error> {
+fun parseCallNode(words: List<InputWord>): Result<InstructionParseResult.Success<CallNode>, InstructionParseResult.Error> {
     if (words.size < 4) {
         return InstructionParseResult.Error.toErr()
     }
 
-    if (words[0].value + " " + words[1].value != CallNodeDeclaration.STRING_NAME) {
+    if (words[0].value + " " + words[1].value != CallNode.STRING_NAME) {
         return InstructionParseResult.Error.toErr()
     }
 
@@ -175,22 +175,25 @@ fun parseCallNode(words: List<InputWord>): Result<InstructionParseResult.Success
         return InstructionParseResult.Error.toErr()
     }
 
-    val subroutineName = words[3].value
+    val ofKeyword = words[3].value
+    if (ofKeyword != "OF") return InstructionParseResult.Error.toErr()
+
+    val subroutineName = words[4].value
     if (!isValidObjectName(subroutineName)) {
         return InstructionParseResult.Error.toErr()
     }
 
-    val callNodeDeclaration =
-        CallNodeDeclaration(
+    val callNode =
+        CallNode(
             nodeName = NodeName(nodeName),
             subroutineName = SubroutineName(subroutineName),
         )
 
-    val remainingWords = words.drop(4)
+    val remainingWords = words.drop(5)
     return InstructionParseResult
         .Success(
             remainingWords = remainingWords,
-            parsedInstruction = callNodeDeclaration,
+            parsedInstruction = callNode,
         ).toOk()
 }
 
