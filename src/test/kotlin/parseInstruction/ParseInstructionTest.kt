@@ -84,7 +84,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseEndSubroutine(words = input).getOrThrow()
+            val result = parseSubroutineEnd(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(

@@ -17,7 +17,7 @@ sealed interface ParsedSubroutine {
         val nodeDeclarations: List<BodyNode>,
         val transitions: List<Transition>,
         val remainingWords: List<InputWord>,
-    )
+    ) : ParsedSubroutine
 
     data object Error : ParsedSubroutine
 }

@@ -30,7 +30,7 @@ fun parseSubroutineStart(words: List<InputWord>): Result<InstructionParseResult.
         ).toOk()
 }
 
-fun parseEndSubroutine(words: List<InputWord>): Result<InstructionParseResult.Success<EndSubroutine>, InstructionParseResult.Error> {
+fun parseSubroutineEnd(words: List<InputWord>): Result<InstructionParseResult.Success<EndSubroutine>, InstructionParseResult.Error> {
     if (words.size < 1) {
         return InstructionParseResult.Error.toErr()
     }
