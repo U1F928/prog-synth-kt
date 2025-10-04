@@ -21,7 +21,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseStartSubroutineDefinition(words = input).getOrThrow()
+            val result = parseSubroutineStartDeclaration(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -48,7 +48,7 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseStartSubroutineDefinition(words = input)
+            val result = parseSubroutineStartDeclaration(words = input)
 
             // then
             assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
@@ -64,7 +64,7 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseStartSubroutineDefinition(words = input)
+            val result = parseSubroutineStartDeclaration(words = input)
 
             // then
             assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
@@ -108,7 +108,7 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseStartSubroutineDefinition(words = input)
+            val result = parseSubroutineStartDeclaration(words = input)
 
             // then
             assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
@@ -124,7 +124,7 @@ class ParseInstructionTest {
                 )
 
             // when
-            val result = parseStartSubroutineDefinition(words = input)
+            val result = parseSubroutineStartDeclaration(words = input)
 
             // then
             assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())

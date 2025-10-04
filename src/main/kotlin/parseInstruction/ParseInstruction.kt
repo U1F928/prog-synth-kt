@@ -7,7 +7,7 @@ import result.map
 import result.toErr
 import result.toOk
 
-fun parseStartSubroutineDefinition(
+fun parseSubroutineStartDeclaration(
     words: List<InputWord>,
 ): Result<InstructionParseResult.Success<SubroutineStart>, InstructionParseResult.Error> {
     if (words.size < 2) {
@@ -117,26 +117,27 @@ fun parseBasicNodeDeclaration(words: List<InputWord>): Result<InstructionParseRe
         ).toOk()
 }
 
-fun parseEntryNodeDeclaration(words: List<InputWord>): InstructionParseResult {
+fun parseEntryNodeDeclaration(words: List<InputWord>): Result<InstructionParseResult.Success<EntryNode>, InstructionParseResult.Error> {
     if (words.size < 3) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
     if (words[0].value + " " + words[1].value != EntryNode.STRING_NAME) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
     val nodeName = words[2].value
     if (!isValidObjectName(nodeName)) {
-        return InstructionParseResult.Error
+        return InstructionParseResult.Error.toErr()
     }
 
     val fromNode = EntryNode(NodeName(nodeName))
     val remainingWords = words.drop(3)
-    return InstructionParseResult.Success(
-        remainingWords = remainingWords,
-        parsedInstruction = fromNode,
-    )
+    return InstructionParseResult
+        .Success(
+            remainingWords = remainingWords,
+            parsedInstruction = fromNode,
+        ).toOk()
 }
 
 fun parseExitNodeDeclaration(words: List<InputWord>): Result<InstructionParseResult.Success<ExitNode>, InstructionParseResult.Error> {
