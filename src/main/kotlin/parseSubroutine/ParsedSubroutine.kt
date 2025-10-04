@@ -4,6 +4,7 @@ import parseInstruction.BasicNode
 import parseInstruction.BodyNode
 import parseInstruction.EntryNode
 import parseInstruction.ExitNode
+import parseInstruction.InputWord
 import parseInstruction.SubroutineStart
 import parseInstruction.Transition
 
@@ -15,6 +16,7 @@ sealed interface ParsedSubroutine {
         val exitNode: ExitNode,
         val nodeDeclarations: List<BodyNode>,
         val transitions: List<Transition>,
+        val remainingWords: List<InputWord>,
     )
 
     data object Error : ParsedSubroutine

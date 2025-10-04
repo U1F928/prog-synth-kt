@@ -80,7 +80,7 @@ class ResultTest {
 
         // when & then
         if (result.isOk()) {
-            assertThat(result.value).isEqualTo(message)
+            assertThat(result.v).isEqualTo(message)
         }
     }
 
@@ -92,7 +92,7 @@ class ResultTest {
 
         // when & then
         if (!result.isOk()) {
-            assertThat(result.value).isEqualTo(message)
+            assertThat(result.v).isEqualTo(message)
         }
     }
 
@@ -104,7 +104,7 @@ class ResultTest {
 
         // when & then
         if (result.isErr()) {
-            assertThat(result.value).isEqualTo(message)
+            assertThat(result.v).isEqualTo(message)
         }
     }
 
@@ -116,7 +116,7 @@ class ResultTest {
 
         // when & then
         if (!result.isErr()) {
-            assertThat(result.value).isEqualTo(message)
+            assertThat(result.v).isEqualTo(message)
         }
     }
 
@@ -124,7 +124,7 @@ class ResultTest {
     fun `map maps an Ok result to a new value`() {
         val message1 = "hello world!"
         val message2 = "and goodbye world!"
-        val nestedResult = Ok(value = message1) as Result<String, String>
+        val nestedResult = Ok(v = message1) as Result<String, String>
 
         // when
         val r = nestedResult.map { it + message2 }
@@ -136,7 +136,7 @@ class ResultTest {
     @Test
     fun `flatMap flattens nested Ok results`() {
         val message = "hello world!"
-        val nestedResult = Ok(value = Ok(value = Ok(message)))
+        val nestedResult = Ok(v = Ok(v = Ok(message)))
 
         // when
         val r = nestedResult.flatMap { it }.flatMap { it }
@@ -149,7 +149,7 @@ class ResultTest {
     fun `mapErr maps an Err result to a new value`() {
         val message1 = "hello world!"
         val message2 = "and goodbye world!"
-        val nestedResult = Err(value = message1) as Result<String, String>
+        val nestedResult = Err(v = message1) as Result<String, String>
 
         // when
         val r = nestedResult.mapErr { it + message2 }
@@ -161,7 +161,7 @@ class ResultTest {
     @Test
     fun `flatMapErr flattens nested Err results`() {
         val message = "hello world!"
-        val nestedResult = Err(value = Err(value = Err(message)))
+        val nestedResult = Err(v = Err(v = Err(message)))
 
         // when
         val r = nestedResult.flatMapErr { it }.flatMapErr { it }
