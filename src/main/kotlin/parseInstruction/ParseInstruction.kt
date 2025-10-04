@@ -147,7 +147,7 @@ fun parseExitNodeDeclaration(words: List<InputWord>): InstructionParseResult {
     )
 }
 
-fun parseSubroutineNodeDeclaration(words: List<InputWord>): InstructionParseResult {
+fun parseCallNodeDeclaration(words: List<InputWord>): InstructionParseResult {
     if (words.size < 4) {
         return InstructionParseResult.Error
     }
@@ -179,43 +179,32 @@ fun parseSubroutineNodeDeclaration(words: List<InputWord>): InstructionParseResu
     )
 }
 
-fun parseTransition(words: List<InputWord>): InstructionParseResult? {
-    val fromNode = parseFromNode(words)
+fun parseTransition(words: List<InputWord>): InstructionParseResult {
+    val result =
+        parseFromNode(words)
+            .onSuccess { parseOnInputStack(it) }
+            .onSuccess { parseGotoNode(it) }
 
-    // TODO load multiple conditionals
-    val conditions =
-        when (fromNode) {
-            is InstructionParseResult.Success -> {
-                listOf(parseOnInputStack(fromNode.remainingWords))
-            }
-            is InstructionParseResult.Error -> return null
-        }
-
-    val lastCondition = conditions.last()
-    val toNode =
-        when (lastCondition) {
-            is InstructionParseResult.Success -> {
-                parseGotoNode(lastCondition.remainingWords)
-            }
-            is InstructionParseResult.Error -> return null
-        }
-
-    return when (toNode) {
-        is InstructionParseResult.Success -> {
+    return when (result) {
+        is ChainedParsingResult.AllSuccessful -> {
+            val parsedInstructions = result.parsedInstructions
+            val transition =
+                ParsedInstruction.Transition(
+                    fromNode = (parsedInstructions[0].parsedInstruction as ParsedInstruction.Transition.FromNode).nodeName,
+                    conditions =
+                        listOf(
+                            parsedInstructions[1].parsedInstruction as ParsedInstruction.Transition.OnInputStack,
+                        ),
+                    toNode = (parsedInstructions[2].parsedInstruction as ParsedInstruction.Transition.GotoNode).nodeName,
+                )
             InstructionParseResult.Success(
-                remainingWords = words.drop(conditions.size * 3 + 2 * 2),
-                parsedInstruction =
-                    ParsedInstruction.Transition(
-                        fromNode = (fromNode.parsedInstruction as ParsedInstruction.Transition.FromNode).nodeName,
-                        toNode = (toNode.parsedInstruction as ParsedInstruction.Transition.GotoNode).nodeName,
-                        conditions =
-                            conditions
-                                .map { (it as InstructionParseResult.Success).parsedInstruction }
-                                .map { it as ParsedInstruction.Transition.TransitionCondition },
-                    ),
+                remainingWords = words.drop(3 + 2 * 2),
+                parsedInstruction = transition,
             )
         }
-        is InstructionParseResult.Error -> InstructionParseResult.Error
+        is ChainedParsingResult.FailedToParse -> {
+            InstructionParseResult.Error
+        }
     }
 }
 
