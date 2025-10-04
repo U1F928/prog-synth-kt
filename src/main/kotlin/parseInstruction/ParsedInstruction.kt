@@ -31,12 +31,12 @@ sealed interface ParsedInstruction {
         }
     }
 
-    data class SubroutineNodeDeclaration(
+    data class CallNodeDeclaration(
         val nodeName: NodeName,
         val subroutineName: SubroutineName,
     ) : NodeDeclaration {
         companion object {
-            const val STRING_NAME = "SUBROUTINE NODE"
+            const val STRING_NAME = "CALL NODE"
         }
     }
 

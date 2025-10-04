@@ -152,7 +152,7 @@ fun parseSubroutineNodeDeclaration(words: List<InputWord>): InstructionParseResu
         return InstructionParseResult.Error
     }
 
-    if (words[0].value + " " + words[1].value != ParsedInstruction.SubroutineNodeDeclaration.STRING_NAME) {
+    if (words[0].value + " " + words[1].value != ParsedInstruction.CallNodeDeclaration.STRING_NAME) {
         return InstructionParseResult.Error
     }
 
@@ -166,8 +166,8 @@ fun parseSubroutineNodeDeclaration(words: List<InputWord>): InstructionParseResu
         return InstructionParseResult.Error
     }
 
-    val subroutineNodeDeclaration =
-        ParsedInstruction.SubroutineNodeDeclaration(
+    val callNodeDeclaration =
+        ParsedInstruction.CallNodeDeclaration(
             nodeName = NodeName(nodeName),
             subroutineName = SubroutineName(subroutineName),
         )
@@ -175,7 +175,7 @@ fun parseSubroutineNodeDeclaration(words: List<InputWord>): InstructionParseResu
     val remainingWords = words.drop(4)
     return InstructionParseResult.Success(
         remainingWords = remainingWords,
-        parsedInstruction = subroutineNodeDeclaration,
+        parsedInstruction = callNodeDeclaration,
     )
 }
 

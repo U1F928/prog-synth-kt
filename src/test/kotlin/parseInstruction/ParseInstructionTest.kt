@@ -200,7 +200,7 @@ class ParseInstructionTest {
             // given
             val input =
                 listOf(
-                    "FROM",
+                    "GOTO",
                     "myNodeName",
                     "remaining",
                     "words",
@@ -454,13 +454,13 @@ class ParseInstructionTest {
     }
 
     @Nested
-    inner class `test parsing of SubroutineNodeDeclaration instruction` {
+    inner class `test parsing of CallNodeDeclaration instruction` {
         @Test
         fun `parse correctly formatted instruction`() {
             // given
             val input =
                 listOf(
-                    "SUBROUTINE",
+                    "CALL",
                     "NODE",
                     "myNodeName",
                     "mySubroutineName",
@@ -480,7 +480,7 @@ class ParseInstructionTest {
                             InputWord("words"),
                         ),
                     parsedInstruction =
-                        ParsedInstruction.SubroutineNodeDeclaration(
+                        ParsedInstruction.CallNodeDeclaration(
                             nodeName = NodeName("myNodeName"),
                             subroutineName = SubroutineName("mySubroutineName"),
                         ),
