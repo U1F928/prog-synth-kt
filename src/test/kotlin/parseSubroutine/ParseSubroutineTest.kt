@@ -31,6 +31,7 @@ class ParseSubroutineTest {
                     "FROM",
                     "myNode1",
                     "ON",
+                    "INPUT",
                     "123",
                     "GOTO",
                     "myNode2",
