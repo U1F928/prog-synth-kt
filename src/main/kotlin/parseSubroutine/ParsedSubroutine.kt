@@ -13,7 +13,7 @@ sealed interface ParsedSubroutine {
         val subroutineStart: SubroutineStart,
         val entryNode: EntryNode,
         val exitNode: ExitNode,
-        val nodeDeclarations: List<BodyNode>,
+        val bodyNodes: List<BodyNode>,
         val transitions: List<Transition>,
         val remainingWords: List<InputWord>,
     ) : ParsedSubroutine

@@ -38,7 +38,7 @@ fun parseSubroutine(inputWords: List<InputWord>): Result<ParsedSubroutine.Succes
             subroutineStart = subroutineStart.v.parsedInstruction,
             entryNode = entryNode.v.parsedInstruction,
             exitNode = exitNode.v.parsedInstruction,
-            nodeDeclarations = parsedSubroutineContent.parsedBodyNodes,
+            bodyNodes = parsedSubroutineContent.parsedBodyNodes,
             transitions = parsedSubroutineContent.parsedTransitions,
             remainingWords = exitNode.v.remainingWords,
         ).toOk()

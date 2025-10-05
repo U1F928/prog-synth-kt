@@ -338,7 +338,7 @@ class ParseInstructionTest {
                 ).map { InputWord(it) }
 
             // when
-            val result = parseEntryNode(words = input)
+            val result = parseEntryNode(words = input).getOrThrow()
 
             // then
             assertThat(result).isEqualTo(
@@ -385,7 +385,7 @@ class ParseInstructionTest {
             val result = parseEntryNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
@@ -451,7 +451,7 @@ class ParseInstructionTest {
             val result = parseEntryNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error)
+            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
         }
     }
 
