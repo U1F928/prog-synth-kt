@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP">
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/parseProgram/ParseProgramTest.kt" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add Program parsing">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ExecuteProgram.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ProgramState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/interpretProgram/interpretProgram.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseInstruction/ParsedInstruction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseInstruction/ParsedInstruction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParseSubroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParseSubroutine.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParsedSubroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParsedSubroutine.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parsedProgram/ParsedProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParsedProgram.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/parseSubroutine/ParseSubroutineTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/parseSubroutine/ParseSubroutineTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/parseInstruction/ParseInstructionTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/parseInstruction/ParseInstructionTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +87,9 @@
     "JUnit.ParseInstructionTest$test parsing of SubroutineNodeDeclaration instruction.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of SubroutineNodeDeclaration instruction.parse correctly formatted instruction.executor": "Debug",
     "JUnit.ParseInstructionTest$test parsing of Transition instruction.parse correctly formatted instruction.executor": "Debug",
+    "JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions.executor": "Run",
+    "JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK.executor": "Run",
+    "JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack.executor": "Run",
     "JUnit.ParseInstructionTest.executor": "Run",
     "JUnit.ParseProgramTest$test parsing of EntryNodeDeclaration instruction.executor": "Run",
     "JUnit.ParseProgramTest$test parsing of NodeDeclaration instruction.executor": "Run",
@@ -106,7 +106,7 @@
     "JUnit.ParseSubroutineTest$test parsing of whole subroutine.executor": "Run",
     "JUnit.ParseSubroutineTest$test parsing of whole subroutine.parse correctly formatted subroutine content.executor": "Run",
     "JUnit.ParseSubroutineTest.executor": "Run",
-    "JUnit.ParseSubroutineTest.return error on invalid subroutine definition.executor": "Debug",
+    "JUnit.ParseSubroutineTest.return error on invalid subroutine definition.executor": "Run",
     "JUnit.ResultTest.executor": "Run",
     "JUnit.ResultTest.flatMap nested Ok result.executor": "Run",
     "JUnit.ResultTest.map maps a result to a new value.executor": "Run",
@@ -126,7 +126,7 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/none/Desktop/prog-synth-kt",
     "onboarding.tips.debug.path": "/home/none/Desktop/prog-synth-kt/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
     "settings.editor.selected.configurable": "project.kotlinCompiler"
@@ -144,7 +144,64 @@
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions">
+    <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parseInstruction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="parseInstruction.ParseInstructionTest" />
+      <option name="MAIN_CLASS_NAME" value="parseInstruction.ParseInstructionTest$test parsing of Transition instruction" />
+      <option name="METHOD_NAME" value="parse transition with no conditions or actions" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parseInstruction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="parseInstruction.ParseInstructionTest" />
+      <option name="MAIN_CLASS_NAME" value="parseInstruction.ParseInstructionTest$test parsing of Transition instruction" />
+      <option name="METHOD_NAME" value="parse transition with only ON INPUT STACK" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parseInstruction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="parseInstruction.ParseInstructionTest" />
+      <option name="MAIN_CLASS_NAME" value="parseInstruction.ParseInstructionTest$test parsing of Transition instruction" />
+      <option name="METHOD_NAME" value="parse transition with only PUSH TO OUTPUT stack" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParseSubroutineTest.return error on invalid subroutine definition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
@@ -182,8 +239,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
+      <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
+      <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
+      <item itemvalue="JUnit.ParseSubroutineTest.return error on invalid subroutine definition" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
+        <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
+        <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
         <item itemvalue="JUnit.ParseSubroutineTest.return error on invalid subroutine definition" />
       </list>
     </recent_temporary>
@@ -460,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759666822466</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="add Program parsing">
+      <option name="closed" value="true" />
+      <created>1759672870217</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1759672870217</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -480,19 +554,20 @@
     <MESSAGE value="switch to recursive parsing of subroutine" />
     <MESSAGE value="delete generated stuff" />
     <MESSAGE value="WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+    <MESSAGE value="add Program parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Program parsing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt</url>
-          <line>12</line>
+          <line>11</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt</url>
-          <line>28</line>
+          <line>27</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">

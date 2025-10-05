@@ -8,7 +8,6 @@ import result.toErr
 import result.Result
 import result.toOk
 
-
 fun parseProgram(inputWords: List<InputWord>): Result<ParsedProgram.Success, ParsedProgram.Error>{
     val parsedSubroutines = parseSubroutines(inputWords)
     if(parsedSubroutines.isErr()) return ParsedProgram.Error(parsedSubroutines.v.remainingWords).toErr()

@@ -763,7 +763,7 @@ class ParseInstructionTest {
     @Nested
     inner class `test parsing of Transition instruction` {
         @Test
-        fun `parse correctly formatted instruction`() {
+        fun `parse transition with ON INPUT STACK and PUSH TO OUTPUT stack`() {
             // given
             val input =
                 listOf(
@@ -811,6 +811,133 @@ class ParseInstructionTest {
                                     outputValue = 234.toUByte()
                                 )
                             ),
+                        ),
+                ),
+            )
+        }
+
+
+        @Test
+        fun `parse transition with only ON INPUT STACK`() {
+            // given
+            val input =
+                listOf(
+                    "FROM",
+                    "myNodeA",
+                    //
+                    "ON",
+                    "INPUT",
+                    "123",
+                    //
+                    "GOTO",
+                    "myNodeB",
+                    "remaining",
+                    "words",
+                ).map { InputWord(it) }
+
+            // when
+            val result = parseTransition(words = input).getOrThrow()
+
+            // then
+            assertThat(result).isEqualTo(
+                InstructionParseResult.Success<Transition>(
+                    remainingWords =
+                        listOf(
+                            InputWord("remaining"),
+                            InputWord("words"),
+                        ),
+                    parsedInstruction =
+                        Transition(
+                            fromNode = NodeName("myNodeA"),
+                            toNode = NodeName("myNodeB"),
+                            conditions =
+                                listOf(
+                                    Transition.OnInputStack(
+                                        conditionalValue = 123.toUByte(),
+                                    ),
+                                ),
+                            actions = emptyList()
+                        ),
+                ),
+            )
+        }
+
+        @Test
+        fun `parse transition with only PUSH TO OUTPUT stack`() {
+            // given
+            val input =
+                listOf(
+                    "FROM",
+                    "myNodeA",
+                    //
+                    "PUSH",
+                    "TO",
+                    "OUTPUT",
+                    "234",
+                    //
+                    "GOTO",
+                    "myNodeB",
+                    "remaining",
+                    "words",
+                ).map { InputWord(it) }
+
+            // when
+            val result = parseTransition(words = input).getOrThrow()
+
+            // then
+            assertThat(result).isEqualTo(
+                InstructionParseResult.Success<Transition>(
+                    remainingWords =
+                        listOf(
+                            InputWord("remaining"),
+                            InputWord("words"),
+                        ),
+                    parsedInstruction =
+                        Transition(
+                            fromNode = NodeName("myNodeA"),
+                            toNode = NodeName("myNodeB"),
+                            conditions = emptyList(),
+                            actions = listOf(
+                                Transition.PushToOutput(
+                                    outputValue = 234.toUByte()
+                                )
+                            ),
+                        ),
+                ),
+            )
+        }
+
+        @Test
+        fun `parse transition with no conditions or actions`() {
+            // given
+            val input =
+                listOf(
+                    "FROM",
+                    "myNodeA",
+                    //
+                    "GOTO",
+                    "myNodeB",
+                    "remaining",
+                    "words",
+                ).map { InputWord(it) }
+
+            // when
+            val result = parseTransition(words = input).getOrThrow()
+
+            // then
+            assertThat(result).isEqualTo(
+                InstructionParseResult.Success<Transition>(
+                    remainingWords =
+                        listOf(
+                            InputWord("remaining"),
+                            InputWord("words"),
+                        ),
+                    parsedInstruction =
+                        Transition(
+                            fromNode = NodeName("myNodeA"),
+                            toNode = NodeName("myNodeB"),
+                            conditions = emptyList(),
+                            actions = emptyList()
                         ),
                 ),
             )
