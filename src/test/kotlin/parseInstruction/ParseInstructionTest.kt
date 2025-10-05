@@ -51,7 +51,7 @@ class ParseInstructionTest {
             val result = parseSubroutineStart(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -67,7 +67,7 @@ class ParseInstructionTest {
             val result = parseSubroutineStart(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -111,7 +111,7 @@ class ParseInstructionTest {
             val result = parseSubroutineStart(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -127,7 +127,7 @@ class ParseInstructionTest {
             val result = parseSubroutineStart(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -175,7 +175,7 @@ class ParseInstructionTest {
             val result = parseFromNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -191,7 +191,7 @@ class ParseInstructionTest {
             val result = parseFromNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -239,7 +239,7 @@ class ParseInstructionTest {
             val result = parseGotoNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -255,7 +255,7 @@ class ParseInstructionTest {
             val result = parseGotoNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -303,7 +303,7 @@ class ParseInstructionTest {
             val result = parseBasicNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -319,7 +319,7 @@ class ParseInstructionTest {
             val result = parseBasicNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -369,7 +369,7 @@ class ParseInstructionTest {
             val result = parseBasicNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -385,7 +385,7 @@ class ParseInstructionTest {
             val result = parseEntryNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -435,7 +435,7 @@ class ParseInstructionTest {
             val result = parseExitNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -451,7 +451,7 @@ class ParseInstructionTest {
             val result = parseEntryNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -505,7 +505,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -523,7 +523,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -541,7 +541,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -559,7 +559,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -640,7 +640,7 @@ class ParseInstructionTest {
             val result = parseOnInputStack(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -656,7 +656,7 @@ class ParseInstructionTest {
             val result = parseOnInputStack(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 
@@ -699,6 +699,7 @@ class ParseInstructionTest {
                                         conditionalValue = 123.toByte(),
                                     ),
                                 ),
+                            actions = emptyList(),
                         ),
                 ),
             )
@@ -718,7 +719,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -736,7 +737,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
 
         @Test
@@ -754,7 +755,7 @@ class ParseInstructionTest {
             val result = parseCallNode(words = input)
 
             // then
-            assertThat(result).isEqualTo(InstructionParseResult.Error.toErr())
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
         }
     }
 }

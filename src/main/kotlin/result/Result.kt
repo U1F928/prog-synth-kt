@@ -27,6 +27,12 @@ fun <T> T.toOk() = Ok(this)
 
 fun <T> T.toErr() = Err(this)
 
+fun <S : U, E : U, U> Result<S, E>.v(): U =
+    when (this) {
+        is Ok -> this.v
+        is Err -> this.v
+    }
+
 @OptIn(ExperimentalContracts::class)
 fun <S, E> Result<S, E>.isOk(): Boolean {
     contract {
@@ -102,5 +108,13 @@ fun <S, E1, E2> Result<S, E1>.flatMapErr(transform: (E1) -> Result<S, E2>): Resu
                 is Ok -> Ok(newResult.v)
                 is Err -> Err(newResult.v)
             }
+        }
+    }
+
+fun <S, E> List<Result<S, E>>.filterIsOk(): List<S> =
+    this.mapNotNull { element ->
+        when (element) {
+            is Ok -> element.v
+            is Err -> null
         }
     }

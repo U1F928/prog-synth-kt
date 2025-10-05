@@ -54,7 +54,8 @@ data class BasicNode(
 data class Transition(
     val fromNode: NodeName,
     val toNode: NodeName,
-    val conditions: List<OnInputStack>,
+    val conditions: List<TransitionCondition>,
+    val actions: List<TransitionAction>,
 ) : ParsedInstruction {
     data class FromNode(
         val nodeName: NodeName,
@@ -79,6 +80,16 @@ data class Transition(
     ) : TransitionCondition {
         companion object {
             const val STRING_NAME = "ON INPUT"
+        }
+    }
+
+    sealed interface TransitionAction : ParsedInstruction
+
+    data class PushToOutput(
+        val outputValue: Byte,
+    ) : TransitionAction {
+        companion object {
+            const val STRING_NAME = "PUSH TO OUTPUT"
         }
     }
 }
