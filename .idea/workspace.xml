@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add program evaluation tests">
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add more program evaluation tests">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/visualizeProgram/VisualizeProgram.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/test.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/visualizeProgram/VisualizeProgramTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Permanent_Script_Dependencies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Permanent_Script_Dependencies.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +49,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="kotlin.jupyter.empty" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -75,6 +78,7 @@
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
     "JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition.executor": "Run",
+    "JUnit.EvaluateProgramTest.2 nodes and 1 unconditional self-loop transition which push to the ouput.executor": "Run",
     "JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput.executor": "Run",
     "JUnit.EvaluateProgramTest.evaluate simple program.executor": "Run",
     "JUnit.EvaluateProgramTest.executor": "Run",
@@ -112,11 +116,13 @@
     "JUnit.ResultTest.map maps a result to a new value.executor": "Run",
     "JUnit.ResultTest.mapErr maps an Err result to a new value.executor": "Run",
     "JUnit.ResultTest.test Result handling.executor": "Run",
+    "JUnit.VisualizeProgramTest.test visualization.executor": "Run",
     "JUnit.test parsing of Subroutine Content.executor": "Run",
     "JUnit.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
     "JUnit.test parsing of whole subroutine.executor": "Run",
     "JUnit.test parsing of whole subroutine.parse correctly formatted subroutine content.executor": "Run",
     "Kotlin.MainKt.executor": "Debug",
+    "Kotlin.VisualizeProgramKt.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -130,7 +136,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.ktlint-plugin"
+    "settings.editor.selected.configurable": "preferences.general"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -146,7 +152,7 @@
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EvaluateProgramTest.2 nodes and 1 unconditional self-loop transition which push to the ouput">
+  <component name="RunManager" selected="JUnit.VisualizeProgramTest.test visualization">
     <configuration name="EvaluateProgramTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
@@ -204,38 +210,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VisualizeProgramTest.test visualization" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="PATTERN" value="visualizeProgram.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="evaluateProgram" />
-      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
-      <option name="METHOD_NAME" value="3 nodes and 2 unconditional transition which push to the ouput" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EvaluateProgramTest.evaluate simple program" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="evaluateProgram.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="evaluateProgram" />
-      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
-      <option name="METHOD_NAME" value="evaluate simple program" />
+      <option name="PACKAGE_NAME" value="visualizeProgram" />
+      <option name="MAIN_CLASS_NAME" value="visualizeProgram.VisualizeProgramTest" />
+      <option name="METHOD_NAME" value="test visualization" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
@@ -254,6 +241,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VisualizeProgramKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="visualizeProgram.VisualizeProgramKt" />
+      <module name="prog-synth-kt.main" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="prog-synth-kt.main" />
       <shortenClasspath name="NONE" />
@@ -265,16 +260,16 @@
       <item itemvalue="JUnit.EvaluateProgramTest" />
       <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition" />
       <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 unconditional self-loop transition which push to the ouput" />
-      <item itemvalue="JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" />
-      <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
+      <item itemvalue="JUnit.VisualizeProgramTest.test visualization" />
+      <item itemvalue="Kotlin.VisualizeProgramKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.VisualizeProgramTest.test visualization" />
+        <item itemvalue="Kotlin.VisualizeProgramKt" />
         <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 unconditional self-loop transition which push to the ouput" />
         <item itemvalue="JUnit.EvaluateProgramTest" />
         <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition" />
-        <item itemvalue="JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" />
-        <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
       </list>
     </recent_temporary>
   </component>
@@ -582,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759683571184</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="add more program evaluation tests">
+      <option name="closed" value="true" />
+      <created>1759683873997</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1759683873997</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -605,7 +608,8 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="add program evaluation" />
     <MESSAGE value="add program evaluation tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add program evaluation tests" />
+    <MESSAGE value="add more program evaluation tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add more program evaluation tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -627,7 +631,7 @@
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties>
             <class-filters>
               <class-filter pattern="java.lang.ClassNotFoundException" enabled="false" />
