@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParseSubroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParseSubroutine.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prog-synth-kt" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="kotlin.jupyter.empty" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14" javaHome="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" gradleVersion="8.14" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="330nwYMnf4NrOEbsL0r77GXBnN9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ParseProgramTest.test parsing of a subroutine.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.parse correctly formatted instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.return error when node name does not match the format.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of ExitNodeDeclaration instruction.parse correctly formatted instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of GotoNode instruction.parse correctly formatted instruction.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of SubroutineNodeDeclaration instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of SubroutineNodeDeclaration instruction.parse correctly formatted instruction.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseInstructionTest$test parsing of Transition instruction.parse correctly formatted instruction.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseInstructionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of EntryNodeDeclaration instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of NodeDeclaration instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of OnInputStack instruction.parse correctly formatted instruction using char to represent byte.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of OnInputStack instruction.parse correctly formatted instruction using number to represent byte.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of StartSubroutine instruction.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of subroutine instruction.return error when not enough words for a subroutine instruction.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ParseProgramTest$test parsing of subroutine instruction.return error when subroutine names does not match the format.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseProgramTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseSubroutineTest$test parsing of Subroutine Content.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseSubroutineTest$test parsing of Subroutine Content.parse correctly formatted subroutine content.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseSubroutineTest$test parsing of whole subroutine.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseSubroutineTest$test parsing of whole subroutine.parse correctly formatted subroutine content.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParseSubroutineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResultTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResultTest.flatMap nested Ok result.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResultTest.map maps a result to a new value.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResultTest.mapErr maps an Err result to a new value.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResultTest.test Result handling.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test parsing of Subroutine Content.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test parsing of whole subroutine.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test parsing of whole subroutine.parse correctly formatted subroutine content.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/none/Desktop/prog-synth-kt&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/none/Desktop/prog-synth-kt/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="parseSubroutine" />
+      <recent name="parsedProgram" />
+    </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="Result" />
+      <recent name="parseInstruction" />
+      <recent name="parseProgram" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ParseSubroutineTest$test parsing of whole subroutine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parseSubroutine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="parseSubroutine.ParseSubroutineTest" />
+      <option name="MAIN_CLASS_NAME" value="parseSubroutine.ParseSubroutineTest$test parsing of whole subroutine" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -XX:HotswapAgent=fatjar" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="prog-synth-kt.test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -XX:HotswapAgent=fatjar" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ParseSubroutineTest$test parsing of whole subroutine" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="" />
+      <created>1758463097766</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758463097766</updated>
+    </task>
+    <task id="LOCAL-00001" summary="init project">
+      <option name="closed" value="true" />
+      <created>1758474269133</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758474269133</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758476049701</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1758476049701</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758476124819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1758476124819</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758476143926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1758476143926</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758476153071</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1758476153071</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758476831360</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1758476831360</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add single instruction parsing">
+      <option name="closed" value="true" />
+      <created>1758478657938</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1758478657938</updated>
+    </task>
+    <task id="LOCAL-00008" summary="rename SubroutineNode to CallNode">
+      <option name="closed" value="true" />
+      <created>1759573711107</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759573711107</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add parsing helpers">
+      <option name="closed" value="true" />
+      <created>1759576476397</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1759576476397</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add Result">
+      <option name="closed" value="true" />
+      <created>1759585310041</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759585310041</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add Result">
+      <option name="closed" value="true" />
+      <created>1759588413743</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1759588413743</updated>
+    </task>
+    <task id="LOCAL-00012" summary="use Result for instruction parsing">
+      <option name="closed" value="true" />
+      <created>1759591814989</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1759591814989</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add more tests for Result">
+      <option name="closed" value="true" />
+      <created>1759593822086</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1759593822086</updated>
+    </task>
+    <task id="LOCAL-00014" summary="convert isOk() and isErr to extension functions">
+      <option name="closed" value="true" />
+      <created>1759595758213</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1759595758213</updated>
+    </task>
+    <task id="LOCAL-00015" summary="rename StartSubroutine to SubroutineStart">
+      <option name="closed" value="true" />
+      <created>1759595891293</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1759595891293</updated>
+    </task>
+    <task id="LOCAL-00016" summary="improve naming">
+      <option name="closed" value="true" />
+      <created>1759596061241</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1759596061241</updated>
+    </task>
+    <task id="LOCAL-00017" summary="improve naming">
+      <option name="closed" value="true" />
+      <created>1759596278346</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1759596278346</updated>
+    </task>
+    <task id="LOCAL-00018" summary="improve naming">
+      <option name="closed" value="true" />
+      <created>1759597037323</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1759597037323</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added WIP subroutine parsing">
+      <option name="closed" value="true" />
+      <created>1759598409542</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598409542</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update .gitignore">
+      <option name="closed" value="true" />
+      <created>1759600300784</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600300784</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update .gitignore">
+      <option name="closed" value="true" />
+      <created>1759600329486</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600329486</updated>
+    </task>
+    <task id="LOCAL-00022" summary="update .gitignore">
+      <option name="closed" value="true" />
+      <created>1759600358127</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600358128</updated>
+    </task>
+    <task id="LOCAL-00023" summary="WIP">
+      <option name="closed" value="true" />
+      <created>1759600674146</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600674146</updated>
+    </task>
+    <task id="LOCAL-00024" summary="passing subroutine parsing test">
+      <option name="closed" value="true" />
+      <created>1759653335318</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1759653335318</updated>
+    </task>
+    <task id="LOCAL-00025" summary="switch to recursive parsing of subroutine">
+      <option name="closed" value="true" />
+      <created>1759654731719</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1759654731719</updated>
+    </task>
+    <task id="LOCAL-00026" summary="delete generated stuff">
+      <option name="closed" value="true" />
+      <created>1759654765753</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1759654765753</updated>
+    </task>
+    <task id="LOCAL-00027" summary="delete generated stuff">
+      <option name="closed" value="true" />
+      <created>1759656399534</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1759656399535</updated>
+    </task>
+    <task id="LOCAL-00028" summary="delete generated stuff">
+      <option name="closed" value="true" />
+      <created>1759656478910</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1759656478910</updated>
+    </task>
+    <task id="LOCAL-00029" summary="WIP">
+      <option name="closed" value="true" />
+      <created>1759657278217</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1759657278217</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init project" />
+    <MESSAGE value="add single instruction parsing" />
+    <MESSAGE value="rename SubroutineNode to CallNode" />
+    <MESSAGE value="add parsing helpers" />
+    <MESSAGE value="add Result" />
+    <MESSAGE value="use Result for instruction parsing" />
+    <MESSAGE value="add more tests for Result" />
+    <MESSAGE value="convert isOk() and isErr to extension functions" />
+    <MESSAGE value="rename StartSubroutine to SubroutineStart" />
+    <MESSAGE value="improve naming" />
+    <MESSAGE value="added WIP subroutine parsing" />
+    <MESSAGE value="update .gitignore" />
+    <MESSAGE value="passing subroutine parsing test" />
+    <MESSAGE value="switch to recursive parsing of subroutine" />
+    <MESSAGE value="delete generated stuff" />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/test/kotlin/parseSubroutine/ParseSubroutineTest.kt</url>
+          <line>23</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <condition expression="name == &quot;&quot;" language="kotlin" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/parseInstruction/ParsedInstruction.kt</url>
+          <line>86</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/test/kotlin/parseSubroutine/ParseSubroutineTest.kt</url>
+          <line>83</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/parseSubroutine/ParseSubroutine.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <class-filters>
+              <class-filter pattern="java.lang.ClassNotFoundException" enabled="false" />
+              <class-filter pattern="java.lang.Class" enabled="false" />
+            </class-filters>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="words[0]" language="kotlin" />
+        <watch expression="words[0] == ParsedInstruction.StartSubroutine.STRING_NAME" language="kotlin" custom="import java.time.format.Parsed" />
+        <watch expression="isValidObjectName(subroutineName)" language="kotlin" custom="import java.time.format.Parsed" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/prog_synth_kt$ResultTest.ic" NAME="ResultTest Coverage Results" MODIFIED="1759593803945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>result.*</FILTER>
+    </SUITE>
+  </component>
+</project>

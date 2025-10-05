@@ -40,7 +40,7 @@ fun parseSubroutine(inputWords: List<InputWord>): Result<ParsedSubroutine.Succes
             exitNode = exitNode.v.parsedInstruction,
             bodyNodes = parsedSubroutineContent.parsedBodyNodes,
             transitions = parsedSubroutineContent.parsedTransitions,
-            remainingWords = exitNode.v.remainingWords,
+            remainingWords = parsedSubroutineContent.remainingWords,
         ).toOk()
 }
 
