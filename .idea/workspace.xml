@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluationConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add program evaluation">
+      <change afterPath="$PROJECT_DIR$/.idea/hotswap_agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ktlint-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ExecuteProgram.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ProgramState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,10 @@
     "Gradle.ParseProgramTest.test parsing of a subroutine.executor": "Run",
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
+    "JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition.executor": "Run",
+    "JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput.executor": "Run",
     "JUnit.EvaluateProgramTest.evaluate simple program.executor": "Run",
+    "JUnit.EvaluateProgramTest.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.parse correctly formatted instruction.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.return error when node name does not match the format.executor": "Debug",
@@ -130,7 +133,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.kotlinCompiler"
+    "settings.editor.selected.configurable": "preferences.ktlint-plugin"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -146,7 +149,64 @@
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EvaluateProgramTest.evaluate simple program">
+  <component name="RunManager" selected="JUnit.EvaluateProgramTest">
+    <configuration name="EvaluateProgramTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="evaluateProgram" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EvaluateProgramTest.2 nodes and 1 conditional transition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="evaluateProgram" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="METHOD_NAME" value="2 nodes and 1 conditional transition" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="evaluateProgram" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="METHOD_NAME" value="3 nodes and 2 unconditional transition which push to the ouput" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EvaluateProgramTest.evaluate simple program" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
@@ -185,62 +245,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="parseInstruction.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="parseInstruction.ParseInstructionTest" />
-      <option name="MAIN_CLASS_NAME" value="parseInstruction.ParseInstructionTest$test parsing of Transition instruction" />
-      <option name="METHOD_NAME" value="parse transition with only ON INPUT STACK" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="parseInstruction.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="parseInstruction.ParseInstructionTest" />
-      <option name="MAIN_CLASS_NAME" value="parseInstruction.ParseInstructionTest$test parsing of Transition instruction" />
-      <option name="METHOD_NAME" value="parse transition with only PUSH TO OUTPUT stack" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParseSubroutineTest.return error on invalid subroutine definition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="parseSubroutine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="parseSubroutine" />
-      <option name="MAIN_CLASS_NAME" value="parseSubroutine.ParseSubroutineTest" />
-      <option name="METHOD_NAME" value="return error on invalid subroutine definition" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <module name="prog-synth-kt.test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -261,19 +265,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.EvaluateProgramTest" />
+      <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition" />
+      <item itemvalue="JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" />
       <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
       <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
-      <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
-      <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
-      <item itemvalue="JUnit.ParseSubroutineTest.return error on invalid subroutine definition" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EvaluateProgramTest" />
+        <item itemvalue="JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition" />
+        <item itemvalue="JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput" />
         <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
         <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
-        <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
-        <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
-        <item itemvalue="JUnit.ParseSubroutineTest.return error on invalid subroutine definition" />
       </list>
     </recent_temporary>
   </component>
@@ -565,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759676889433</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add program evaluation">
+      <option name="closed" value="true" />
+      <created>1759682253387</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1759682253387</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -586,7 +598,8 @@
     <MESSAGE value="delete generated stuff" />
     <MESSAGE value="add Program parsing" />
     <MESSAGE value="WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+    <MESSAGE value="add program evaluation" />
+    <option name="LAST_COMMIT_MESSAGE" value="add program evaluation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
