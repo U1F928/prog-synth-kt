@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain( jdkVersion = 21)
+    jvmToolchain(jdkVersion = 21)
 }
 
 repositories {
@@ -15,9 +15,8 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
     testImplementation("org.assertj:assertj-core:3.26.0")
+    implementation("org.graphstream:gs-core:2.0")
 }
-
-
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     compilerOptions {

@@ -372,4 +372,75 @@ class EvaluateProgramTest {
             )
         }
     }
+
+    @Test
+    fun `2 nodes and 1 unconditional self-loop transition which push to the ouput`() {
+        // given
+        val node1 = EntryNode(NodeName("node1"))
+        val node2 = BasicNode(NodeName("node2"))
+
+        val outputValue = 123.toUByte()
+        val transition =
+            Transition(
+                fromNode = node1,
+                toNode = node1,
+                conditions = emptySet(),
+                actions =
+                    setOf(
+                        Transition.Action.PushToOutputStack(outputValue = outputValue),
+                    ),
+            )
+
+        val mainSubroutineDefinition =
+            SubroutineDefinition(
+                name = SubroutineName("main"),
+                nodes = setOf(node1, node2),
+                transitions = setOf(transition),
+            )
+
+        val programDefinition =
+            ProgramDefinition(
+                mainSubroutine = mainSubroutineDefinition,
+                otherSubroutines = emptySet(),
+            )
+
+        val programState =
+            ProgramState(
+                subroutineStack =
+                    listOf(
+                        SubroutineState(
+                            subroutineName = mainSubroutineDefinition.name,
+                            currentNode = mainSubroutineDefinition.entryNode(),
+                        ),
+                    ),
+                outputValues = emptyList(),
+                inputValues = emptyList(),
+            )
+
+        val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
+        val numberOfSteps = 10u
+
+        // when
+        val result =
+            getProgramStateInGivenNumberOfSteps(
+                programDefinition = programDefinition,
+                programState = programState,
+                evaluationConfig = evalConfig,
+                numberOfSteps = numberOfSteps,
+            )
+        // then
+        assertThat(result).isEqualTo(
+            ProgramState(
+                subroutineStack =
+                    listOf(
+                        SubroutineState(
+                            subroutineName = mainSubroutineDefinition.name,
+                            currentNode = node1,
+                        ),
+                    ),
+                outputValues = (1u..numberOfSteps).map { outputValue },
+                inputValues = emptyList(),
+            ),
+        )
+    }
 }
