@@ -590,7 +590,7 @@ class ParseInstructionTest {
                         ),
                     parsedInstruction =
                         Transition.OnInputStack(
-                            conditionalValue = 123.toByte(),
+                            conditionalValue = 123.toUByte(),
                         ),
                 ),
             )
@@ -621,7 +621,7 @@ class ParseInstructionTest {
                         ),
                     parsedInstruction =
                         Transition.OnInputStack(
-                            conditionalValue = 'a'.code.toByte(),
+                            conditionalValue = 'a'.code.toUByte(),
                         ),
                 ),
             )
@@ -661,6 +661,106 @@ class ParseInstructionTest {
     }
 
     @Nested
+    inner class `test parsing of PushToOutputStack instruction` {
+        @Test
+        fun `parse correctly formatted instruction using number to represent byte`() {
+            // given
+            val input =
+                listOf(
+                    "PUSH",
+                    "TO",
+                    "OUTPUT",
+                    "123",
+                    "remaining",
+                    "words",
+                ).map { InputWord(it) }
+
+            // when
+            val result = parsePushToOutputStack(words = input).getOrThrow()
+
+            // then
+            assertThat(result).isEqualTo(
+                InstructionParseResult.Success(
+                    remainingWords =
+                        listOf(
+                            InputWord("remaining"),
+                            InputWord("words"),
+                        ),
+                    parsedInstruction =
+                        Transition.PushToOutput(
+                            outputValue = 123.toUByte(),
+                        ),
+                ),
+            )
+        }
+
+        @Test
+        fun `parse correctly formatted instruction using char to represent byte`() {
+            // given
+            val input =
+                listOf(
+                    "PUSH",
+                    "TO",
+                    "OUTPUT",
+                    "'a'",
+                    "remaining",
+                    "words",
+                ).map { InputWord(it) }
+
+            // when
+            val result = parsePushToOutputStack(words = input).getOrThrow()
+
+            // then
+            assertThat(result).isEqualTo(
+                InstructionParseResult.Success(
+                    remainingWords =
+                        listOf(
+                            InputWord("remaining"),
+                            InputWord("words"),
+                        ),
+                    parsedInstruction =
+                        Transition.PushToOutput(
+                            outputValue = 'a'.code.toUByte(),
+                        ),
+                ),
+            )
+        }
+
+        @Test
+        fun `return error when not enough words for a OnInputStack instruction`() {
+            // given
+            val input =
+                listOf(
+                    InputWord("PUSH"),
+                    InputWord("TO"),
+                    InputWord("OUTPUT"),
+                )
+
+            // when
+            val result = parsePushToOutputStack(words = input)
+
+            // then
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
+        }
+
+        @Test
+        fun `return error when instruction does not match the format`() {
+            // given
+            val input =
+                listOf(
+                    InputWord("PUSH"),
+                    InputWord("tO"),
+                )
+
+            // when
+            val result = parsePushToOutputStack(words = input)
+
+            // then
+            assertThat(result).isEqualTo(InstructionParseResult.Error(remainingWords = input).toErr())
+        }
+    }
+
+    @Nested
     inner class `test parsing of Transition instruction` {
         @Test
         fun `parse correctly formatted instruction`() {
@@ -669,9 +769,16 @@ class ParseInstructionTest {
                 listOf(
                     "FROM",
                     "myNodeA",
+                    //
                     "ON",
                     "INPUT",
                     "123",
+                    //
+                    "PUSH",
+                    "TO",
+                    "OUTPUT",
+                    "234",
+                    //
                     "GOTO",
                     "myNodeB",
                     "remaining",
@@ -696,10 +803,14 @@ class ParseInstructionTest {
                             conditions =
                                 listOf(
                                     Transition.OnInputStack(
-                                        conditionalValue = 123.toByte(),
+                                        conditionalValue = 123.toUByte(),
                                     ),
                                 ),
-                            actions = emptyList(),
+                            actions = listOf(
+                                Transition.PushToOutput(
+                                    outputValue = 234.toUByte()
+                                )
+                            ),
                         ),
                 ),
             )

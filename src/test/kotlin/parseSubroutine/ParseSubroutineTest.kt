@@ -68,7 +68,7 @@ class ParseSubroutineTest {
                     conditions =
                         listOf(
                             Transition.OnInputStack(
-                                conditionalValue = 123.toByte(),
+                                conditionalValue = 123.toUByte(),
                             ),
                         ),
                     emptyList(),
@@ -159,7 +159,7 @@ class ParseSubroutineTest {
                     conditions =
                         listOf(
                             Transition.OnInputStack(
-                                conditionalValue = 123,
+                                conditionalValue = 123.toUByte(),
                             ),
                         ),
                     emptyList(),

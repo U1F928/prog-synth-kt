@@ -76,7 +76,7 @@ data class Transition(
     sealed interface TransitionCondition : ParsedInstruction
 
     data class OnInputStack(
-        val conditionalValue: Byte,
+        val conditionalValue: UByte,
     ) : TransitionCondition {
         companion object {
             const val STRING_NAME = "ON INPUT"
@@ -86,7 +86,7 @@ data class Transition(
     sealed interface TransitionAction : ParsedInstruction
 
     data class PushToOutput(
-        val outputValue: Byte,
+        val outputValue: UByte,
     ) : TransitionAction {
         companion object {
             const val STRING_NAME = "PUSH TO OUTPUT"

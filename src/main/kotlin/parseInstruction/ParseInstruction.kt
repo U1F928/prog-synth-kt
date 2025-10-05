@@ -219,7 +219,7 @@ fun parseTransition(words: List<InputWord>): Result<InstructionParseResult.Succe
 
     return InstructionParseResult
         .Success(
-            remainingWords = words.drop(3 + 2 * 2),
+            remainingWords = gotoNode.v.remainingWords,
             parsedInstruction = transition,
         ).toOk()
 }
@@ -231,7 +231,7 @@ fun parsePushToOutputStack(
         return InstructionParseResult.Error(remainingWords = words).toErr()
     }
 
-    if (words[0].value + " " + words[1].value + " " + words[2] != Transition.PushToOutput.STRING_NAME) {
+    if (words[0].value + " " + words[1].value + " " + words[2].value != Transition.PushToOutput.STRING_NAME) {
         return InstructionParseResult.Error(remainingWords = words).toErr()
     }
 
@@ -274,25 +274,25 @@ fun parseOnInputStack(
         ).toOk()
 }
 
-private fun parseByteValue(value: InputWord): Result<Byte, Unit> {
+private fun parseByteValue(value: InputWord): Result<UByte, Unit> {
     if (value.value.length == 1) {
         val byteValue =
             value.value
                 .single()
                 .code
-                .toByte()
+                .toUByte()
 
         return byteValue.toOk()
     }
 
-    if (value.value.toByteOrNull() != null) {
-        return value.value.toByte().toOk()
+    if (value.value.toUByteOrNull() != null) {
+        return value.value.toUByte().toOk()
     }
 
     return getCharInsideQuotesAsByte(value.value)
 }
 
-private fun getCharInsideQuotesAsByte(string: String) = getCharInsideQuotes(string).map { it.code.toByte() }
+private fun getCharInsideQuotesAsByte(string: String) = getCharInsideQuotes(string).map { it.code.toUByte() }
 
 private fun getCharInsideQuotes(string: String): Result<Char, Unit> {
     if (string.length != 3) return err()
