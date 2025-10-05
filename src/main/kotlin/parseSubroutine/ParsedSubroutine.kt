@@ -20,3 +20,9 @@ sealed interface ParsedSubroutine {
 
     data object Error : ParsedSubroutine
 }
+
+data class ParsedSubroutineContent(
+    val parsedBodyNodes: List<BodyNode>,
+    val parsedTransitions: List<Transition>,
+    val remainingWords: List<InputWord>,
+)

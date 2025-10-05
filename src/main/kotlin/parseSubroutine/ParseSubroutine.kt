@@ -2,7 +2,7 @@ package parseSubroutine
 
 import parseInstruction.BodyNode
 import parseInstruction.InputWord
-import parseInstruction.ParsedInstruction
+import parseInstruction.InstructionParseResult
 import parseInstruction.Transition
 import parseInstruction.parseBasicNode
 import parseInstruction.parseCallNode
@@ -17,39 +17,6 @@ import result.isErr
 import result.isOk
 import result.toErr
 import result.toOk
-
-data class ParsedSubroutineContent(
-    val parsedBodyNodes: List<BodyNode>,
-    val parsedTransitions: List<Transition>,
-    val remainingWords: List<InputWord>,
-)
-
-fun parseSubroutineContent(remainingWords: List<InputWord>): ParsedSubroutineContent {
-    var currentlyRemainingWords = remainingWords
-    val parsedInstructions = mutableListOf<ParsedInstruction>()
-    while (true) {
-        val instructions =
-            listOf(
-                parseTransition(currentlyRemainingWords),
-                parseCallNode(currentlyRemainingWords),
-                parseBasicNode(currentlyRemainingWords),
-            )
-
-        val parsedInstruction = instructions.singleOrNull { it.isOk() }
-        if (parsedInstruction == null) {
-            return ParsedSubroutineContent(
-                parsedTransitions = parsedInstructions.filterIsInstance<Transition>(),
-                parsedBodyNodes = parsedInstructions.filterIsInstance<BodyNode>(),
-                remainingWords = currentlyRemainingWords,
-            )
-        }
-
-        val successfullyParsedInstruction = parsedInstruction.getOrThrow()
-
-        currentlyRemainingWords = successfullyParsedInstruction.remainingWords
-        parsedInstructions.add(successfullyParsedInstruction.parsedInstruction)
-    }
-}
 
 fun parseSubroutine(inputWords: List<InputWord>): Result<ParsedSubroutine.Success, ParsedSubroutine.Error> {
     val subroutineStart = parseSubroutineStart(inputWords)
@@ -75,4 +42,41 @@ fun parseSubroutine(inputWords: List<InputWord>): Result<ParsedSubroutine.Succes
             transitions = parsedSubroutineContent.parsedTransitions,
             remainingWords = exitNode.v.remainingWords,
         ).toOk()
+}
+
+fun parseSubroutineContent(remainingWords: List<InputWord>): ParsedSubroutineContent {
+    val parsedInstructionResults = parseSubroutineBodyInstructions(remainingWords)
+    val newRemainingWords =
+        if (parsedInstructionResults.isNotEmpty()) {
+            parsedInstructionResults.last().remainingWords
+        } else {
+            emptyList()
+        }
+    val parsedInstructions = parsedInstructionResults.map { it.parsedInstruction }
+    val parsedTransitions = parsedInstructions.filterIsInstance<Transition>()
+    val parsedBodyNodes = parsedInstructions.filterIsInstance<BodyNode>()
+
+    return ParsedSubroutineContent(
+        parsedTransitions = parsedTransitions,
+        parsedBodyNodes = parsedBodyNodes,
+        remainingWords = newRemainingWords,
+    )
+}
+
+fun parseSubroutineBodyInstructions(remainingWords: List<InputWord>): List<InstructionParseResult.Success<*>> {
+    val instructions =
+        listOf(
+            parseTransition(remainingWords),
+            parseCallNode(remainingWords),
+            parseBasicNode(remainingWords),
+        )
+
+    val parsedInstruction = instructions.singleOrNull { it.isOk() }
+
+    if (parsedInstruction == null) {
+        return emptyList()
+    }
+
+    val successfullyParsedInstruction = parsedInstruction.getOrThrow()
+    return listOf(successfullyParsedInstruction) + parseSubroutineBodyInstructions(successfullyParsedInstruction.remainingWords)
 }
