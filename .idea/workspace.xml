@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add Program parsing">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ExecuteProgram.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ProgramState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/interpretProgram/interpretProgram.kt" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluationConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseProgram/ParseProgram.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/parseInstruction/ParseInstructionTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/parseInstruction/ParseInstructionTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ExecuteProgram.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/executeProgram/ProgramState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +77,7 @@
     "Gradle.ParseProgramTest.test parsing of a subroutine.executor": "Run",
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
+    "JUnit.EvaluateProgramTest.evaluate simple program.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.parse correctly formatted instruction.executor": "Run",
     "JUnit.ParseInstructionTest$test parsing of CallNodeDeclaration instruction.return error when node name does not match the format.executor": "Debug",
@@ -129,11 +129,13 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "project.kotlinCompiler"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="evaluateProgram" />
       <recent name="parseProgram" />
       <recent name="parseSubroutine" />
       <recent name="parsedProgram" />
@@ -144,7 +146,26 @@
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions">
+  <component name="RunManager" selected="JUnit.EvaluateProgramTest.evaluate simple program">
+    <configuration name="EvaluateProgramTest.evaluate simple program" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="evaluateProgram" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="METHOD_NAME" value="evaluate simple program" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
@@ -240,6 +261,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
       <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
       <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
       <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
@@ -247,6 +269,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EvaluateProgramTest.evaluate simple program" />
         <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with no conditions or actions" />
         <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only PUSH TO OUTPUT stack" />
         <item itemvalue="JUnit.ParseInstructionTest$test parsing of Transition instruction.parse transition with only ON INPUT STACK" />
@@ -534,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759672870217</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="WIP">
+      <option name="closed" value="true" />
+      <created>1759676889433</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1759676889433</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -553,9 +584,9 @@
     <MESSAGE value="passing subroutine parsing test" />
     <MESSAGE value="switch to recursive parsing of subroutine" />
     <MESSAGE value="delete generated stuff" />
-    <MESSAGE value="WIP" />
     <MESSAGE value="add Program parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Program parsing" />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
