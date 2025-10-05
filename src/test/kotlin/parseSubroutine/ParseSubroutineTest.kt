@@ -12,6 +12,7 @@ import parseInstruction.NodeName
 import parseInstruction.SubroutineName
 import parseInstruction.SubroutineStart
 import parseInstruction.Transition
+import result.getErrOrThrow
 import result.getOrThrow
 
 class ParseSubroutineTest {
@@ -124,10 +125,8 @@ class ParseSubroutineTest {
             val result = parseSubroutine(inputWords = input).getOrThrow()
 
             // then
-            assertThat(result.subroutineStart).isEqualTo(
-                SubroutineStart(
-                    subroutineName = SubroutineName("mySubroutine1"),
-                ),
+            assertThat(result.subroutineName).isEqualTo(
+                 SubroutineName("mySubroutine1"),
             )
 
             assertThat(result.entryNode).isEqualTo(
@@ -172,5 +171,43 @@ class ParseSubroutineTest {
                 InputWord("..."),
             )
         }
+    }
+
+    @Test
+    fun `return error on invalid subroutine definition`() {
+        // given
+        val input =
+            listOf(
+                //
+                "SUBROUTINE",
+                "mySubroutine1",
+                //
+                "ENTRY",
+                "NODE",
+                "myNode1",
+                //
+                "EXIT",
+                "NODE",
+                "myNode2",
+                //
+                "nODE",
+                "myNode3",
+                //
+                "END",
+            ).map { InputWord(it) }
+
+        // when
+        val result = parseSubroutine(inputWords = input).getErrOrThrow()
+
+        // then
+        assertThat(result).isEqualTo(
+            ParsedSubroutine.Error(
+                remainingWords = listOf(
+                    InputWord("nODE"),
+                    InputWord("myNode3"),
+                    InputWord("END")
+                )
+            )
+        )
     }
 }

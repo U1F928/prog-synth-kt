@@ -54,7 +54,9 @@ data class BasicNode(
 data class Transition(
     val fromNode: NodeName,
     val toNode: NodeName,
+    // TODO use Set here?
     val conditions: List<TransitionCondition>,
+    // TODO use Set here?
     val actions: List<TransitionAction>,
 ) : ParsedInstruction {
     data class FromNode(

@@ -20,22 +20,22 @@ import result.toOk
 
 fun parseSubroutine(inputWords: List<InputWord>): Result<ParsedSubroutine.Success, ParsedSubroutine.Error> {
     val subroutineStart = parseSubroutineStart(inputWords)
-    if (subroutineStart.isErr()) return ParsedSubroutine.Error.toErr()
+    if (subroutineStart.isErr()) return ParsedSubroutine.Error(subroutineStart.v.remainingWords).toErr()
 
     val entryNode = parseEntryNode(subroutineStart.v.remainingWords)
-    if (entryNode.isErr()) return ParsedSubroutine.Error.toErr()
+    if (entryNode.isErr()) return ParsedSubroutine.Error(entryNode.v.remainingWords).toErr()
 
     val exitNode = parseExitNode(entryNode.v.remainingWords)
-    if (exitNode.isErr()) return ParsedSubroutine.Error.toErr()
+    if (exitNode.isErr()) return ParsedSubroutine.Error(exitNode.v.remainingWords).toErr()
 
     val parsedSubroutineContent = parseSubroutineContent(exitNode.v.remainingWords)
 
     val subroutineEnd = parseSubroutineEnd(parsedSubroutineContent.remainingWords)
-    if (subroutineEnd.isErr()) return ParsedSubroutine.Error.toErr()
+    if (subroutineEnd.isErr()) return ParsedSubroutine.Error(subroutineEnd.v.remainingWords).toErr()
 
     return ParsedSubroutine
         .Success(
-            subroutineStart = subroutineStart.v.parsedInstruction,
+            subroutineName = subroutineStart.v.parsedInstruction.subroutineName,
             entryNode = entryNode.v.parsedInstruction,
             exitNode = exitNode.v.parsedInstruction,
             bodyNodes = parsedSubroutineContent.parsedBodyNodes,
@@ -50,7 +50,7 @@ fun parseSubroutineContent(remainingWords: List<InputWord>): ParsedSubroutineCon
         if (parsedInstructionResults.isNotEmpty()) {
             parsedInstructionResults.last().remainingWords
         } else {
-            emptyList()
+            remainingWords
         }
     val parsedInstructions = parsedInstructionResults.map { it.parsedInstruction }
     val parsedTransitions = parsedInstructions.filterIsInstance<Transition>()

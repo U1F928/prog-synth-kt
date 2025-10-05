@@ -1,9 +1,11 @@
-package parsedProgram
+package parseProgram
 
-import parseInstruction.ParsedInstruction
+import parseInstruction.InputWord
+import parseInstruction.SubroutineName
 import parseSubroutine.ParsedSubroutine
 
-// TODO
+val ENTRY_SUBROUTINE_NAME = SubroutineName("main")
+
 interface ParsedProgram {
     data class Success(
         val mainSubroutine: ParsedSubroutine,
@@ -14,5 +16,8 @@ interface ParsedProgram {
         }
     }
 
-    data object Error
+    data class Error(
+        val remainingWords: List<InputWord>
+    ): ParsedProgram
+
 }
