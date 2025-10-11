@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add test for custom DSL">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/convertProgramToEvaluationFormat/ConvertToEvaluationFormat.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/DefineProgramTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="added test for executing program created by custom DSL">
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/DefineProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/convertProgramToEvaluationFormatTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +72,8 @@
     "Gradle.ParseProgramTest.test parsing of a subroutine.executor": "Run",
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
+    "JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program.test conversion of 1 to 111 and of 2 to 222.executor": "Run",
+    "JUnit.ConvertProgramToEvaluationFormatTest.test a.executor": "Run",
     "JUnit.DefineProgramTest$test custom stack definition.define program with a single custom stack.executor": "Run",
     "JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node.executor": "Run",
     "JUnit.DefineProgramTest$test subroutine definition.define program with multiple empty subroutines.executor": "Run",
@@ -90,6 +86,7 @@
     "JUnit.DefineProgramTest.define program with an unconditional push transition.executor": "Run",
     "JUnit.DefineProgramTest.executor": "Run",
     "JUnit.DefineProgramTest.test.executor": "Run",
+    "JUnit.EvaluateProgramTest$test evaluateProgram.convert all 1s to 2s.executor": "Run",
     "JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions.executor": "Run",
     "JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s.executor": "Run",
     "JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition.executor": "Run",
@@ -169,46 +166,65 @@
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s">
-    <configuration name="DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program">
+    <configuration name="ConvertProgramToEvaluationFormatTest$test execution of the converted program" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="defineProgram.*" />
+          <option name="PATTERN" value="convertProgramToEvaluationFormat.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="defineProgram.DefineProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="defineProgram.DefineProgramTest$test more complex program definitions" />
-      <option name="METHOD_NAME" value="test program definition with multiple outgoing transitions from single node" />
+      <option name="PACKAGE_NAME" value="convertProgramToEvaluationFormat.ConvertProgramToEvaluationFormatTest" />
+      <option name="MAIN_CLASS_NAME" value="convertProgramToEvaluationFormat.ConvertProgramToEvaluationFormatTest$test execution of the converted program" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConvertProgramToEvaluationFormatTest$test execution of the converted program.test conversion of 1 to 111 and of 2 to 222" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="convertProgramToEvaluationFormat.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="convertProgramToEvaluationFormat.ConvertProgramToEvaluationFormatTest" />
+      <option name="MAIN_CLASS_NAME" value="convertProgramToEvaluationFormat.ConvertProgramToEvaluationFormatTest$test execution of the converted program" />
+      <option name="METHOD_NAME" value="test conversion of 1 to 111 and of 2 to 222" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConvertProgramToEvaluationFormatTest.test a" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="defineProgram.*" />
+          <option name="PATTERN" value="convertProgramToEvaluationFormat.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="defineProgram.DefineProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="defineProgram.DefineProgramTest$test transition definition" />
-      <option name="METHOD_NAME" value="define program with a custom Stack conditional and custom Stack push" />
+      <option name="PACKAGE_NAME" value="convertProgramToEvaluationFormat" />
+      <option name="MAIN_CLASS_NAME" value="convertProgramToEvaluationFormat.ConvertProgramToEvaluationFormatTest" />
+      <option name="METHOD_NAME" value="test a" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EvaluateProgramTest$test evaluateProgram.convert all 1s to 2s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
@@ -219,8 +235,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
       <option name="PACKAGE_NAME" value="evaluateProgram.EvaluateProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest$test getNextProgramState" />
-      <option name="METHOD_NAME" value="return finished execution when there is no more input and there are no matching transitions" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest$test evaluateProgram" />
+      <option name="METHOD_NAME" value="convert all 1s to 2s" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
@@ -246,25 +262,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EvaluateProgramTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="evaluateProgram.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="evaluateProgram" />
-      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <module name="prog-synth-kt.test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -285,19 +282,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" />
-      <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push" />
-      <item itemvalue="JUnit.EvaluateProgramTest" />
-      <item itemvalue="JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" />
+      <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program" />
+      <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program.test conversion of 1 to 111 and of 2 to 222" />
+      <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest.test a" />
+      <item itemvalue="JUnit.EvaluateProgramTest$test evaluateProgram.convert all 1s to 2s" />
       <item itemvalue="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program" />
+        <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program.test conversion of 1 to 111 and of 2 to 222" />
+        <item itemvalue="JUnit.ConvertProgramToEvaluationFormatTest.test a" />
+        <item itemvalue="JUnit.EvaluateProgramTest$test evaluateProgram.convert all 1s to 2s" />
         <item itemvalue="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s" />
-        <item itemvalue="JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" />
-        <item itemvalue="JUnit.EvaluateProgramTest" />
-        <item itemvalue="JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" />
-        <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push" />
       </list>
     </recent_temporary>
   </component>
@@ -669,7 +666,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760200331101</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="add test for custom DSL">
+      <option name="closed" value="true" />
+      <created>1760203102248</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1760203102248</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added test for executing program created by custom DSL">
+      <option name="closed" value="true" />
+      <created>1760203771818</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1760203771818</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -697,7 +710,8 @@
     <MESSAGE value="WIP program definition in Kotlin DSL" />
     <MESSAGE value="WIP program definition in Kotlin DSL, added custom stacks" />
     <MESSAGE value="add test for custom DSL" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test for custom DSL" />
+    <MESSAGE value="added test for executing program created by custom DSL" />
+    <option name="LAST_COMMIT_MESSAGE" value="added test for executing program created by custom DSL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -729,6 +743,16 @@
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt</url>
+          <line>89</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/convertProgramToEvaluationFormatTest.kt</url>
+          <line>49</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

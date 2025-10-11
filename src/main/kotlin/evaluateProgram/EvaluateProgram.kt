@@ -1,5 +1,29 @@
 package evaluateProgram
 
+fun evaluateProgram(
+    programDefinition: ProgramDefinition,
+    inputValues: List<UByte>,
+    evaluationConfig: EvaluationConfig,
+): ProgramState {
+    val initialSubroutineState =
+        SubroutineState(
+            subroutineName = programDefinition.mainSubroutine.name,
+            currentNode = programDefinition.mainSubroutine.entryNode(),
+        )
+    val programState =
+        RunningProgramState(
+            subroutineStack = listOf(initialSubroutineState),
+            outputValues = emptyList(),
+            inputValues = inputValues,
+        )
+
+    return getProgramStateWhenItFinishes(
+        programDefinition = programDefinition,
+        programState = programState,
+        evaluationConfig = evaluationConfig,
+    )
+}
+
 tailrec fun getProgramStateWhenItFinishes(
     programDefinition: ProgramDefinition,
     programState: RunningProgramState,

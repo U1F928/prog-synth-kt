@@ -25,7 +25,10 @@ fun ProgramDefinition.toEvaluationFormat(): evaluateProgram.ProgramDefinition {
 }
 
 fun Subroutine.toEvaluationFormat(): SubroutineDefinition {
-    val nodes = this.nodes.map { it.toEvaluationFormat() }.toSet()
+    val entryNode = this.ENTRY_NODE.toEvaluationFormat()
+    val exitNode = this.EXIT_NODE.toEvaluationFormat()
+    val nodes = this.nodes.map { it.toEvaluationFormat() }.toSet() + entryNode + exitNode
+
     val transitions = this.transitions.map { it.toEvaluationFormat() }.toSet()
     return SubroutineDefinition(
         name = this.name,

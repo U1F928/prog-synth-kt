@@ -593,4 +593,72 @@ class EvaluateProgramTest {
             )
         }
     }
+
+    @Nested
+    inner class `test evaluateProgram` {
+        @Test
+        fun `convert all 1s to 2s`() {
+            // given
+            val node1 = EntryNode
+            val node2 = ExitNode
+
+            val conditionValue = 1.toUByte()
+            val outputValue = 2.toUByte()
+            val transition2 =
+                Transition(
+                    fromNode = node1,
+                    toNode = node1,
+                    conditions =
+                        setOf(
+                            Transition.Condition.OnInputStack(
+                                conditionValue = conditionValue,
+                            ),
+                        ),
+                    actions =
+                        setOf(
+                            Transition.Action.PushToOutputStack(outputValue = outputValue),
+                        ),
+                )
+
+            val mainSubroutineDefinition =
+                SubroutineDefinition(
+                    name = SubroutineName("main"),
+                    nodes = setOf(node1, node2),
+                    transitions = setOf(transition2),
+                )
+
+            val programDefinition =
+                ProgramDefinition(
+                    mainSubroutine = mainSubroutineDefinition,
+                    otherSubroutines = emptySet(),
+                )
+
+            val inputValues = (1..5).map { 1.toUByte() }
+
+            val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
+
+            // when
+            val result =
+                evaluateProgram(
+                    programDefinition = programDefinition,
+                    inputValues = inputValues,
+                    evaluationConfig = evalConfig,
+                )
+            // then
+            val expectedOutputValues = inputValues.map { 2.toUByte() }
+            assertThat(result).isEqualTo(
+                FinishedProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = node1,
+                            ),
+                        ),
+                    outputValues = expectedOutputValues,
+                    inputValues = emptyList(),
+                ),
+            )
+        }
+    }
 }
