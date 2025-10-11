@@ -2,7 +2,7 @@ package defineProgram
 
 import kotlin.reflect.KProperty
 
-fun ProgramDefinition.subroutine(initializeSubroutine: Subroutine.() -> Unit) =
+fun ProgramDefinition.SUBROUTINE(initializeSubroutine: Subroutine.() -> Unit) =
     SubroutineDelegate(
         initializeSubroutine = initializeSubroutine,
         subroutines = this.subroutines,

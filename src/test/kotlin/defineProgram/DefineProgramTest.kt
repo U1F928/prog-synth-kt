@@ -6,18 +6,20 @@ class DefineProgramTest {
     @Test
     fun `test`() {
         val x =
-            program {
-                val main by subroutine {
-                    val q1 by node()
-                    val q2 by node()
-                    val q3 by node()
+            PROGRAM {
+                val main by SUBROUTINE {
+                    val q1 by NODE()
+                    val q2 by NODE()
+                    val q3 by NODE()
 
-                    from(q1).to(q2)
-                        .pushOutput(12)
+                    FROM(q3)
+                        .ON(INPUT, 43)
+                        .GOTO(q1)
 
-                    from(q2).to(q3)
-                        .on(23).at(INPUT)
-                        .push(23).to(OUTPUT)
+                    FROM(q1)
+                        .ON(INPUT, 23)
+                        .PUSH(OUTPUT, 443)
+                        .GOTO(q3)
                 }
             }
         println(x)

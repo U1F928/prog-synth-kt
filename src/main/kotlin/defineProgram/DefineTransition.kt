@@ -1,6 +1,6 @@
 package defineProgram
 
-infix fun Subroutine.from(fromNode: Node): Transition {
+infix fun Subroutine.FROM(fromNode: Node): Transition {
     val transition =
         Transition(
             fromNode = fromNode,
@@ -14,7 +14,7 @@ infix fun Subroutine.from(fromNode: Node): Transition {
     return transition
 }
 
-fun Transition.to(toNode: Node): Transition {
+infix fun Transition.GOTO(toNode: Node): Transition {
     this.toNode = toNode
     return this
 }
@@ -24,43 +24,40 @@ data class DefinedNewConditionalValue(
     val conditionalValue: UByte,
 )
 
-fun Transition.on(conditionalValue: Int) =
-    DefinedNewConditionalValue(
-        transition = this,
-        conditionalValue = conditionalValue.toUByte(),
-    )
-
-fun Transition.onInput(conditionalValue: Int): Transition = this.on(conditionalValue).at(INPUT)
-
-fun DefinedNewConditionalValue.at(stack: ReadableStack): Transition {
-    val newCondition =
-        when (stack) {
-            INPUT -> Transition.OnInputStack(this.conditionalValue)
-            is CustomStack -> TODO()
-        }
-    this.transition.conditions.add(newCondition)
-
-    return this.transition
-}
-
-fun Transition.on(
+fun Transition.ON(
     stack: ReadableStack,
     conditionalValue: Int,
-) {
+): Transition {
+    val newCondition =
+        Transition.OnStack(
+            stack = stack,
+            conditionalValue = conditionalValue.toUByte(),
+        )
+
+    this.conditions.add(newCondition)
+
+    return this
+}
+
+fun Transition.PUSH(
+    stack: WritableStack,
+    outputValue: Int,
+): Transition {
+    val newCondition =
+        Transition.PushToStack(
+            stack = stack,
+            outputValue = outputValue.toUByte(),
+        )
+
+    this.actions.add(newCondition)
+
+    return this
 }
 
 data class DefinedNewOutputValue(
     val transition: Transition,
     val outputValue: UByte,
 )
-
-fun Transition.push(outputValue: Int): DefinedNewOutputValue =
-    DefinedNewOutputValue(
-        transition = this,
-        outputValue = outputValue.toUByte(),
-    )
-
-fun Transition.pushOutput(outputValue: Int): Transition = this.push(outputValue).to(OUTPUT)
 
 fun DefinedNewOutputValue.to(stack: WritableStack): Transition {
     val newAction =

@@ -1,7 +1,7 @@
 package defineProgram
 import kotlin.reflect.KProperty
 
-fun Subroutine.node() = NodeDelegate(nodes = this.nodes)
+fun Subroutine.NODE() = NodeDelegate(nodes = this.nodes)
 
 class NodeDelegate(
     private val nodes: MutableList<Node>,
