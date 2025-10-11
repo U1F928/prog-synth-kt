@@ -1,0 +1,47 @@
+<!-- Container for the graph -->
+<div id="cy" style="width: 400px; height: 300px; border: 1px solid #ccc;"></div>
+
+<!-- Load Cytoscape.js from CDN -->
+<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+<script>
+    // Wait a bit to ensure Cytoscape.js has loaded
+    setTimeout(() => {
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+
+            elements: [
+                { data: { id: 'a', label: 'Node A' } },
+                { data: { id: 'b', label: 'Node B' } },
+                { data: { id: 'c', label: 'Node C' } },
+                { data: { id: 'ab', source: 'a', target: 'b' } },
+                { data: { id: 'bc', source: 'b', target: 'c' } }
+            ],
+
+            layout: { name: 'circle' },
+
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': '#61bffc',
+                        'label': 'data(label)',
+                        'color': '#333',
+                        'text-valign': 'center',
+                        'text-halign': 'center',
+                        'font-size': '10px'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 2,
+                        'line-color': '#ccc',
+                        'target-arrow-color': '#ccc',
+                        'target-arrow-shape': 'triangle'
+                    }
+                }
+            ]
+        });
+    }, 200);
+</script>

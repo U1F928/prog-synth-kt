@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="added test for executing program created by custom DSL">
-      <change afterPath="$PROJECT_DIR$/TODO-List.md" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="added TODO list">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/visualizeProgram/G6-test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/visualizeProgram/cytoscape-test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Permanent_Script_Dependencies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Permanent_Script_Dependencies.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parsing.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/visualizeProgram/test.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,10 +155,13 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "jupyter.settings.vcs"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/visualizeProgram" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="convertProgramToEvaluationFormat" />
       <recent name="evaluateProgram" />
@@ -691,11 +700,18 @@
       <option name="project" value="LOCAL" />
       <updated>1760203821737</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="added TODO list">
+      <option name="closed" value="true" />
+      <created>1760204030732</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1760204030732</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init project" />
     <MESSAGE value="add single instruction parsing" />
     <MESSAGE value="rename SubroutineNode to CallNode" />
     <MESSAGE value="add parsing helpers" />
@@ -720,7 +736,8 @@
     <MESSAGE value="WIP program definition in Kotlin DSL, added custom stacks" />
     <MESSAGE value="add test for custom DSL" />
     <MESSAGE value="added test for executing program created by custom DSL" />
-    <option name="LAST_COMMIT_MESSAGE" value="added test for executing program created by custom DSL" />
+    <MESSAGE value="added TODO list" />
+    <option name="LAST_COMMIT_MESSAGE" value="added TODO list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
