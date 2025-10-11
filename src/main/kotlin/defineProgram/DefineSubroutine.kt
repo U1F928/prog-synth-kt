@@ -29,6 +29,8 @@ class SubroutineDelegate(
 
 data class Subroutine(
     val name: String,
+    val ENTRY_NODE: EntryNode = EntryNode,
+    val EXIT_NODE: ExitNode = ExitNode,
     val nodes: MutableList<Node> = mutableListOf(),
     val transitions: MutableList<Transition> = mutableListOf(),
 )

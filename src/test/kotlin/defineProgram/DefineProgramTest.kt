@@ -12,13 +12,17 @@ class DefineProgramTest {
                     val q2 by NODE()
                     val q3 by NODE()
 
+                    FROM(ENTRY_NODE)
+                        .ON(INPUT, 32)
+                        .GOTO(EXIT_NODE)
+
                     FROM(q3)
                         .ON(INPUT, 43)
                         .GOTO(q1)
 
                     FROM(q1)
                         .ON(INPUT, 23)
-                        .PUSH(OUTPUT, 443)
+                        .PUSH(OUTPUT, 123)
                         .GOTO(q3)
                 }
             }

@@ -39,6 +39,21 @@ fun Transition.ON(
     return this
 }
 
+fun Transition.ON(
+    stack: ReadableStack,
+    conditionalValue: Char,
+): Transition {
+    val newCondition =
+        Transition.OnStack(
+            stack = stack,
+            conditionalValue = conditionalValue.code.toUByte(),
+        )
+
+    this.conditions.add(newCondition)
+
+    return this
+}
+
 fun Transition.PUSH(
     stack: WritableStack,
     outputValue: Int,
@@ -47,6 +62,21 @@ fun Transition.PUSH(
         Transition.PushToStack(
             stack = stack,
             outputValue = outputValue.toUByte(),
+        )
+
+    this.actions.add(newCondition)
+
+    return this
+}
+
+fun Transition.PUSH(
+    stack: WritableStack,
+    outputValue: Char,
+): Transition {
+    val newCondition =
+        Transition.PushToStack(
+            stack = stack,
+            outputValue = outputValue.code.toUByte(),
         )
 
     this.actions.add(newCondition)
