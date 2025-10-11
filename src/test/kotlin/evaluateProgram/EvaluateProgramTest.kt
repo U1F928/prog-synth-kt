@@ -8,13 +8,14 @@ import parseInstruction.SubroutineName
 import kotlin.collections.emptyList
 
 class EvaluateProgramTest {
+    // TODO test handling of call stack with multiple subroutines
     @Nested
     inner class `test getNextProgramState` {
         @Test
         fun `2 nodes and 1 conditional transition`() {
             // given
-            val node1 = EntryNode(NodeName("node1"))
-            val node2 = ExitNode(NodeName("node2"))
+            val node1 = EntryNode
+            val node2 = ExitNode
 
             val conditionalValue = 123.toUByte()
             val transition =
@@ -42,7 +43,7 @@ class EvaluateProgramTest {
                 )
 
             val programState =
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -65,7 +66,7 @@ class EvaluateProgramTest {
                 )
             // then
             assertThat(result).isEqualTo(
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -82,8 +83,8 @@ class EvaluateProgramTest {
         @Test
         fun `2 nodes and 1 unconditional transition`() {
             // given
-            val node1 = EntryNode(NodeName("node1"))
-            val node2 = ExitNode(NodeName("node2"))
+            val node1 = EntryNode
+            val node2 = ExitNode
 
             val transition =
                 Transition(
@@ -107,7 +108,7 @@ class EvaluateProgramTest {
                 )
 
             val programState =
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -130,7 +131,7 @@ class EvaluateProgramTest {
                 )
             // then
             assertThat(result).isEqualTo(
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -147,8 +148,8 @@ class EvaluateProgramTest {
         @Test
         fun `2 nodes and 1 unconditional transition which pushes to the output`() {
             // given
-            val node1 = EntryNode(NodeName("node1"))
-            val node2 = ExitNode(NodeName("node2"))
+            val node1 = EntryNode
+            val node2 = ExitNode
 
             val outputValue = 234.toUByte()
             val transition =
@@ -176,7 +177,7 @@ class EvaluateProgramTest {
                 )
 
             val programState =
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -199,7 +200,7 @@ class EvaluateProgramTest {
                 )
             // then
             assertThat(result).isEqualTo(
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -216,8 +217,8 @@ class EvaluateProgramTest {
         @Test
         fun `2 nodes and 1 conditional transition which pushes to the output`() {
             // given
-            val node1 = EntryNode(NodeName("node1"))
-            val node2 = ExitNode(NodeName("node2"))
+            val node1 = EntryNode
+            val node2 = ExitNode
 
             val conditionalValue = 123.toUByte()
             val outputValue = 234.toUByte()
@@ -249,7 +250,7 @@ class EvaluateProgramTest {
                 )
 
             val programState =
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -272,7 +273,7 @@ class EvaluateProgramTest {
                 )
             // then
             assertThat(result).isEqualTo(
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -285,6 +286,75 @@ class EvaluateProgramTest {
                 ),
             )
         }
+
+        @Test
+        fun `return finished execution when there is no more input and there are no matching transitions`() {
+            // given
+            val node1 = EntryNode
+            val node2 = ExitNode
+
+            val conditionalValue = 123.toUByte()
+            val transition =
+                Transition(
+                    fromNode = node1,
+                    toNode = node2,
+                    conditions =
+                        setOf(
+                            Transition.Condition.OnInputStack(conditionValue = conditionalValue),
+                        ),
+                    actions = emptySet(),
+                )
+
+            val mainSubroutineDefinition =
+                SubroutineDefinition(
+                    name = SubroutineName("main"),
+                    nodes = setOf(node1, node2),
+                    transitions = setOf(transition),
+                )
+
+            val programDefinition =
+                ProgramDefinition(
+                    mainSubroutine = mainSubroutineDefinition,
+                    otherSubroutines = emptySet(),
+                )
+
+            val programState =
+                RunningProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = mainSubroutineDefinition.entryNode(),
+                            ),
+                        ),
+                    outputValues = emptyList(),
+                    inputValues = emptyList(),
+                )
+
+            val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
+
+            // when
+            val result =
+                getNextProgramState(
+                    programDefinition = programDefinition,
+                    programState = programState,
+                    evaluationConfig = evalConfig,
+                )
+            // then
+            assertThat(result).isEqualTo(
+                FinishedProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = node1,
+                            ),
+                        ),
+                    outputValues = emptyList(),
+                    inputValues = emptyList(),
+                ),
+            )
+        }
     }
 
     @Nested
@@ -292,9 +362,9 @@ class EvaluateProgramTest {
         @Test
         fun `3 nodes and 2 unconditional transitions which push to the ouput`() {
             // given
-            val node1 = EntryNode(NodeName("node1"))
+            val node1 = EntryNode
             val node2 = BasicNode(NodeName("node2"))
-            val node3 = ExitNode(NodeName("node3"))
+            val node3 = ExitNode
 
             val outputValue1 = 123.toUByte()
             val outputValue2 = 234.toUByte()
@@ -334,7 +404,7 @@ class EvaluateProgramTest {
                 )
 
             val programState =
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -358,7 +428,7 @@ class EvaluateProgramTest {
                 )
             // then
             assertThat(result).isEqualTo(
-                ProgramState(
+                RunningProgramState(
                     subroutineStack =
                         listOf(
                             SubroutineState(
@@ -371,76 +441,156 @@ class EvaluateProgramTest {
                 ),
             )
         }
+
+        @Test
+        fun `2 nodes and 1 unconditional self-loop transition which push to the ouput`() {
+            // given
+            val node1 = EntryNode
+            val node2 = BasicNode(NodeName("node2"))
+
+            val outputValue = 123.toUByte()
+            val transition =
+                Transition(
+                    fromNode = node1,
+                    toNode = node1,
+                    conditions = emptySet(),
+                    actions =
+                        setOf(
+                            Transition.Action.PushToOutputStack(outputValue = outputValue),
+                        ),
+                )
+
+            val mainSubroutineDefinition =
+                SubroutineDefinition(
+                    name = SubroutineName("main"),
+                    nodes = setOf(node1, node2),
+                    transitions = setOf(transition),
+                )
+
+            val programDefinition =
+                ProgramDefinition(
+                    mainSubroutine = mainSubroutineDefinition,
+                    otherSubroutines = emptySet(),
+                )
+
+            val programState =
+                RunningProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = mainSubroutineDefinition.entryNode(),
+                            ),
+                        ),
+                    outputValues = emptyList(),
+                    inputValues = emptyList(),
+                )
+
+            val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
+            val numberOfSteps = 10u
+
+            // when
+            val result =
+                getProgramStateInGivenNumberOfSteps(
+                    programDefinition = programDefinition,
+                    programState = programState,
+                    evaluationConfig = evalConfig,
+                    numberOfSteps = numberOfSteps,
+                )
+            // then
+            assertThat(result).isEqualTo(
+                RunningProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = node1,
+                            ),
+                        ),
+                    outputValues = (1u..numberOfSteps).map { outputValue },
+                    inputValues = emptyList(),
+                ),
+            )
+        }
     }
 
-    @Test
-    fun `2 nodes and 1 unconditional self-loop transition which push to the ouput`() {
-        // given
-        val node1 = EntryNode(NodeName("node1"))
-        val node2 = BasicNode(NodeName("node2"))
+    @Nested
+    inner class `test getProgramStateWhenItFinishes` {
+        @Test
+        fun `convert all 1s to 2s`() {
+            // given
+            val node1 = EntryNode
+            val node2 = ExitNode
 
-        val outputValue = 123.toUByte()
-        val transition =
-            Transition(
-                fromNode = node1,
-                toNode = node1,
-                conditions = emptySet(),
-                actions =
-                    setOf(
-                        Transition.Action.PushToOutputStack(outputValue = outputValue),
-                    ),
-            )
-
-        val mainSubroutineDefinition =
-            SubroutineDefinition(
-                name = SubroutineName("main"),
-                nodes = setOf(node1, node2),
-                transitions = setOf(transition),
-            )
-
-        val programDefinition =
-            ProgramDefinition(
-                mainSubroutine = mainSubroutineDefinition,
-                otherSubroutines = emptySet(),
-            )
-
-        val programState =
-            ProgramState(
-                subroutineStack =
-                    listOf(
-                        SubroutineState(
-                            subroutineName = mainSubroutineDefinition.name,
-                            currentNode = mainSubroutineDefinition.entryNode(),
+            val conditionValue = 1.toUByte()
+            val outputValue = 2.toUByte()
+            val transition2 =
+                Transition(
+                    fromNode = node1,
+                    toNode = node1,
+                    conditions =
+                        setOf(
+                            Transition.Condition.OnInputStack(
+                                conditionValue = conditionValue,
+                            ),
                         ),
-                    ),
-                outputValues = emptyList(),
-                inputValues = emptyList(),
-            )
-
-        val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
-        val numberOfSteps = 10u
-
-        // when
-        val result =
-            getProgramStateInGivenNumberOfSteps(
-                programDefinition = programDefinition,
-                programState = programState,
-                evaluationConfig = evalConfig,
-                numberOfSteps = numberOfSteps,
-            )
-        // then
-        assertThat(result).isEqualTo(
-            ProgramState(
-                subroutineStack =
-                    listOf(
-                        SubroutineState(
-                            subroutineName = mainSubroutineDefinition.name,
-                            currentNode = node1,
+                    actions =
+                        setOf(
+                            Transition.Action.PushToOutputStack(outputValue = outputValue),
                         ),
-                    ),
-                outputValues = (1u..numberOfSteps).map { outputValue },
-                inputValues = emptyList(),
-            ),
-        )
+                )
+
+            val mainSubroutineDefinition =
+                SubroutineDefinition(
+                    name = SubroutineName("main"),
+                    nodes = setOf(node1, node2),
+                    transitions = setOf(transition2),
+                )
+
+            val programDefinition =
+                ProgramDefinition(
+                    mainSubroutine = mainSubroutineDefinition,
+                    otherSubroutines = emptySet(),
+                )
+
+            val inputValues = (1..5).map { 1.toUByte() }
+            val programState =
+                RunningProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = mainSubroutineDefinition.entryNode(),
+                            ),
+                        ),
+                    outputValues = emptyList(),
+                    inputValues = inputValues,
+                )
+
+            val evalConfig = EvaluationConfig(skipInputValueWithNoMatchingTransition = false)
+
+            // when
+            val result =
+                getProgramStateWhenItFinishes(
+                    programDefinition = programDefinition,
+                    programState = programState,
+                    evaluationConfig = evalConfig,
+                )
+            // then
+            val expectedOutputValues = inputValues.map { 2.toUByte() }
+            assertThat(result).isEqualTo(
+                FinishedProgramState(
+                    subroutineStack =
+                        listOf(
+                            SubroutineState(
+                                subroutineName = mainSubroutineDefinition.name,
+                                currentNode = node1,
+                            ),
+                        ),
+                    outputValues = expectedOutputValues,
+                    inputValues = emptyList(),
+                ),
+            )
+        }
     }
 }

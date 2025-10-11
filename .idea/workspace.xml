@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP program definition in Kotlin DSL, added custom stacks">
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add test for custom DSL">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/convertProgramToEvaluationFormat/ConvertToEvaluationFormat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/DefineProgramTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineStack.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineStack.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineSubroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineSubroutine.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/parseInstruction/ParsedInstruction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/parseInstruction/ParsedInstruction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/EvaluateProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/evaluateProgram/ProgramState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/evaluateProgram/EvaluateProgramTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +79,7 @@
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
     "JUnit.DefineProgramTest$test custom stack definition.define program with a single custom stack.executor": "Run",
+    "JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node.executor": "Run",
     "JUnit.DefineProgramTest$test subroutine definition.define program with multiple empty subroutines.executor": "Run",
     "JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push.executor": "Run",
     "JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional.executor": "Run",
@@ -89,6 +90,8 @@
     "JUnit.DefineProgramTest.define program with an unconditional push transition.executor": "Run",
     "JUnit.DefineProgramTest.executor": "Run",
     "JUnit.DefineProgramTest.test.executor": "Run",
+    "JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions.executor": "Run",
+    "JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s.executor": "Run",
     "JUnit.EvaluateProgramTest.2 nodes and 1 conditional transition.executor": "Run",
     "JUnit.EvaluateProgramTest.2 nodes and 1 unconditional self-loop transition which push to the ouput.executor": "Run",
     "JUnit.EvaluateProgramTest.3 nodes and 2 unconditional transition which push to the ouput.executor": "Run",
@@ -153,37 +156,20 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="convertProgramToEvaluationFormat" />
       <recent name="evaluateProgram" />
       <recent name="parseProgram" />
       <recent name="parseSubroutine" />
       <recent name="parsedProgram" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="convertProgramToEvaluationFormat" />
       <recent name="Result" />
       <recent name="parseInstruction" />
       <recent name="parseProgram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node">
-    <configuration name="DefineProgramTest$test custom stack definition.define program with a single custom stack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="prog-synth-kt.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="defineProgram.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="defineProgram.DefineProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="defineProgram.DefineProgramTest$test custom stack definition" />
-      <option name="METHOD_NAME" value="define program with a single custom stack" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s">
     <configuration name="DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
@@ -222,39 +208,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefineProgramTest$test transition definition.define program with a custom Stack conditional" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="defineProgram.*" />
+          <option name="PATTERN" value="evaluateProgram.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="defineProgram.DefineProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="defineProgram.DefineProgramTest$test transition definition" />
-      <option name="METHOD_NAME" value="define program with a custom Stack conditional" />
+      <option name="PACKAGE_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest$test getNextProgramState" />
+      <option name="METHOD_NAME" value="return finished execution when there is no more input and there are no matching transitions" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefineProgramTest$test transition definition.define program with a custom Stack push" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="prog-synth-kt.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="defineProgram.*" />
+          <option name="PATTERN" value="evaluateProgram.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
-      <option name="PACKAGE_NAME" value="defineProgram.DefineProgramTest" />
-      <option name="MAIN_CLASS_NAME" value="defineProgram.DefineProgramTest$test transition definition" />
-      <option name="METHOD_NAME" value="define program with a custom Stack push" />
+      <option name="PACKAGE_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest$test getProgramStateWhenItFinishes" />
+      <option name="METHOD_NAME" value="convert all 1s to 2s" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EvaluateProgramTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="prog-synth-kt.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="evaluateProgram.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../jbr_jcef-21.0.8-linux-x64-b1140.54" />
+      <option name="PACKAGE_NAME" value="evaluateProgram" />
+      <option name="MAIN_CLASS_NAME" value="evaluateProgram.EvaluateProgramTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea " />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -280,19 +285,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DefineProgramTest$test custom stack definition.define program with a single custom stack" />
       <item itemvalue="JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" />
-      <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional" />
       <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push" />
-      <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack push" />
+      <item itemvalue="JUnit.EvaluateProgramTest" />
+      <item itemvalue="JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" />
+      <item itemvalue="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EvaluateProgramTest$test getProgramStateWhenItFinishes.convert all 1s to 2s" />
+        <item itemvalue="JUnit.EvaluateProgramTest$test getNextProgramState.return finished execution when there is no more input and there are no matching transitions" />
+        <item itemvalue="JUnit.EvaluateProgramTest" />
         <item itemvalue="JUnit.DefineProgramTest$test more complex program definitions.test program definition with multiple outgoing transitions from single node" />
         <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional and custom Stack push" />
-        <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack push" />
-        <item itemvalue="JUnit.DefineProgramTest$test transition definition.define program with a custom Stack conditional" />
-        <item itemvalue="JUnit.DefineProgramTest$test custom stack definition.define program with a single custom stack" />
       </list>
     </recent_temporary>
   </component>
@@ -656,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760197062228</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add test for custom DSL">
+      <option name="closed" value="true" />
+      <created>1760200331101</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1760200331101</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -683,7 +696,8 @@
     <MESSAGE value="add graph vis example" />
     <MESSAGE value="WIP program definition in Kotlin DSL" />
     <MESSAGE value="WIP program definition in Kotlin DSL, added custom stacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP program definition in Kotlin DSL, added custom stacks" />
+    <MESSAGE value="add test for custom DSL" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test for custom DSL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

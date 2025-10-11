@@ -1,8 +1,32 @@
 package evaluateProgram
 
+tailrec fun getProgramStateWhenItFinishes(
+    programDefinition: ProgramDefinition,
+    programState: RunningProgramState,
+    evaluationConfig: EvaluationConfig,
+): ProgramState {
+    val nextProgramState =
+        getNextProgramState(
+            programDefinition = programDefinition,
+            programState = programState,
+            evaluationConfig = evaluationConfig,
+        )
+
+    return when (nextProgramState) {
+        is RunningProgramState ->
+            getProgramStateWhenItFinishes(
+                programDefinition = programDefinition,
+                programState = nextProgramState,
+                evaluationConfig = evaluationConfig,
+            )
+
+        is FinishedProgramState -> nextProgramState
+    }
+}
+
 tailrec fun getProgramStateInGivenNumberOfSteps(
     programDefinition: ProgramDefinition,
-    programState: ProgramState,
+    programState: RunningProgramState,
     evaluationConfig: EvaluationConfig,
     numberOfSteps: UInt,
 ): ProgramState {
@@ -15,17 +39,22 @@ tailrec fun getProgramStateInGivenNumberOfSteps(
             evaluationConfig = evaluationConfig,
         )
 
-    return getProgramStateInGivenNumberOfSteps(
-        programDefinition = programDefinition,
-        programState = nextProgramState,
-        evaluationConfig = evaluationConfig,
-        numberOfSteps = numberOfSteps - 1u,
-    )
+    return when (nextProgramState) {
+        is RunningProgramState ->
+            getProgramStateInGivenNumberOfSteps(
+                programDefinition = programDefinition,
+                programState = nextProgramState,
+                evaluationConfig = evaluationConfig,
+                numberOfSteps = numberOfSteps - 1u,
+            )
+
+        is FinishedProgramState -> nextProgramState
+    }
 }
 
 fun getNextProgramState(
     programDefinition: ProgramDefinition,
-    programState: ProgramState,
+    programState: RunningProgramState,
     evaluationConfig: EvaluationConfig,
 ): ProgramState {
     val inputValue = programState.inputValues.firstOrNull()
@@ -69,10 +98,31 @@ fun getNextProgramState(
         )
     }
 
-    if (matchingTransitions.isEmpty() && evaluationConfig.skipInputValueWithNoMatchingTransition) {
+    if (
+        matchingTransitions.isEmpty() &&
+        evaluationConfig.skipInputValueWithNoMatchingTransition &&
+        programState.inputValues.isNotEmpty()
+    ) {
         return programState.copy(
             inputValues = programState.inputValues.drop(1),
         )
+    }
+
+    if (
+        matchingTransitions.isEmpty() &&
+        !evaluationConfig.skipInputValueWithNoMatchingTransition
+    ) {
+        // TODO test this
+        return programState.toFinishedState()
+    }
+
+    if (
+        matchingTransitions.isEmpty() &&
+        evaluationConfig.skipInputValueWithNoMatchingTransition &&
+        programState.inputValues.isEmpty()
+    ) {
+        // TODO test this
+        return programState.toFinishedState()
     }
 
     error("This should not be reachable!")

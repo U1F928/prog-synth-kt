@@ -2,7 +2,6 @@ package evaluateProgram
 
 import parseInstruction.NodeName
 import parseInstruction.SubroutineName
-import java.util.Stack
 
 data class Transition(
     val fromNode: Node,
@@ -29,13 +28,9 @@ data class BasicNode(
     val name: NodeName,
 ) : Node
 
-data class EntryNode(
-    val name: NodeName,
-) : Node
+data object EntryNode : Node
 
-data class ExitNode(
-    val name: NodeName,
-) : Node
+data object ExitNode : Node
 
 data class CallNode(
     val name: NodeName,
@@ -64,8 +59,27 @@ data class SubroutineState(
     val currentNode: Node,
 )
 
-data class ProgramState(
-    val subroutineStack: List<SubroutineState>,
-    val outputValues: List<UByte>,
-    val inputValues: List<UByte>,
-)
+sealed interface ProgramState {
+    val subroutineStack: List<SubroutineState>
+    val outputValues: List<UByte>
+    val inputValues: List<UByte>
+}
+
+data class RunningProgramState(
+    override val subroutineStack: List<SubroutineState>,
+    override val outputValues: List<UByte>,
+    override val inputValues: List<UByte>,
+) : ProgramState
+
+fun RunningProgramState.toFinishedState(): FinishedProgramState =
+    FinishedProgramState(
+        subroutineStack = this.subroutineStack,
+        outputValues = this.outputValues,
+        inputValues = this.inputValues,
+    )
+
+data class FinishedProgramState(
+    override val subroutineStack: List<SubroutineState>,
+    override val outputValues: List<UByte>,
+    override val inputValues: List<UByte>,
+) : ProgramState
