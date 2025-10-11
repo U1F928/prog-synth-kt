@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="add graph vis example">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/test.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt" afterDir="false" />
+    <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="WIP program definition in Kotlin DSL">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineNode.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineStack.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineSubroutine.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineTransition.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +49,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
         <option value="kotlin.jupyter.empty" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -135,7 +138,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3379374",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.general"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -592,7 +595,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759687055049</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="WIP program definition in Kotlin DSL">
+      <option name="closed" value="true" />
+      <created>1760184162294</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1760184162294</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -617,7 +628,8 @@
     <MESSAGE value="add program evaluation tests" />
     <MESSAGE value="add more program evaluation tests" />
     <MESSAGE value="add graph vis example" />
-    <option name="LAST_COMMIT_MESSAGE" value="add graph vis example" />
+    <MESSAGE value="WIP program definition in Kotlin DSL" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP program definition in Kotlin DSL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -639,34 +651,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt</url>
-          <line>15</line>
+          <line>22</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/test/kotlin/defineProgram/DefineProgramTest.kt</url>
-          <line>10</line>
-          <option name="timeStamp" value="48" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineNode.kt</url>
+          <line>3</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt</url>
-          <line>24</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt</url>
-          <line>27</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt</url>
-          <line>33</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-field">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineProgram.kt</url>
-          <line>4</line>
-          <properties myFieldName="subroutines" myClassName="defineProgram.ProgramDefinition" />
-          <option name="timeStamp" value="57" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/defineProgram/DefineNode.kt</url>
+          <line>20</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
