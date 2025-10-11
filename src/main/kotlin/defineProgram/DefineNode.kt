@@ -1,6 +1,5 @@
 package defineProgram
 import parseInstruction.NodeName
-import parseInstruction.SubroutineName
 import kotlin.reflect.KProperty
 
 sealed interface NodeDefinitionToHandle
@@ -8,7 +7,7 @@ sealed interface NodeDefinitionToHandle
 data object BasicNodeDefinition : NodeDefinitionToHandle
 
 data class CallNodeDefinition(
-    val subroutineName: String,
+    val subroutine: Subroutine,
 ) : NodeDefinitionToHandle
 
 enum class NodeType {
@@ -22,15 +21,15 @@ fun Subroutine.NODE() =
         nodes = this.nodes,
     )
 
-fun Subroutine.CALL_NODE() =
+fun Subroutine.CALL_NODE(subroutine: Subroutine) =
     NodeDelegate(
-        nodeDefinitionToHandle = CallNodeDefinition(subroutineName = this.name),
+        nodeDefinitionToHandle = CallNodeDefinition(subroutine = subroutine),
         nodes = this.nodes,
     )
 
 class NodeDelegate(
     private val nodeDefinitionToHandle: NodeDefinitionToHandle,
-    private val nodes: MutableList<Node>,
+    private val nodes: MutableList<CustomNode>,
 ) {
     operator fun provideDelegate(
         thisRef: Any?,
@@ -42,7 +41,7 @@ class NodeDelegate(
                 is CallNodeDefinition ->
                     CallNode(
                         name = NodeName(property.name),
-                        subroutineName = SubroutineName(nodeDefinitionToHandle.subroutineName),
+                        subroutine = nodeDefinitionToHandle.subroutine,
                     )
             }
 
@@ -55,13 +54,13 @@ class NodeDelegate(
         property: KProperty<*>,
     ): Node =
         nodes
-            .filterIsInstance<NodeWithCustomName>()
+            .filterIsInstance<CustomNode>()
             .single { it.name == NodeName(property.name) }
 }
 
 sealed interface Node
 
-sealed interface NodeWithCustomName : Node {
+sealed interface CustomNode : Node {
     val name: NodeName
 }
 
@@ -71,9 +70,9 @@ data object ExitNode : Node
 
 data class BasicNode(
     override val name: NodeName,
-) : NodeWithCustomName
+) : CustomNode
 
 data class CallNode(
     override val name: NodeName,
-    val subroutineName: SubroutineName,
-) : NodeWithCustomName
+    val subroutine: Subroutine,
+) : CustomNode

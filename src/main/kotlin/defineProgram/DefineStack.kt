@@ -9,7 +9,7 @@ fun ProgramDefinition.STACK() =
     )
 
 class StackDelegate(
-    private val stacks: MutableList<Stack>,
+    private val stacks: MutableList<CustomStack>,
 ) {
     operator fun provideDelegate(
         thisRef: Any?,

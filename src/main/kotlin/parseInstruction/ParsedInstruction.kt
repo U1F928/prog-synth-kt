@@ -103,27 +103,27 @@ fun isValidObjectName(name: String): Boolean {
 
 @JvmInline
 value class SubroutineName(
-    val name: String,
+    val value: String,
 ) {
     init {
-        require(isValidObjectName(name))
+        require(isValidObjectName(value))
     }
 }
 
 @JvmInline
 value class NodeName(
-    val name: String,
+    val value: String,
 ) {
     init {
-        require(isValidObjectName(name))
+        require(isValidObjectName(value))
     }
 }
 
 @JvmInline
 value class StackName(
-    val name: String,
+    val value: String,
 ) {
     init {
-        require(isValidObjectName(name))
+        require(isValidObjectName(value))
     }
 }

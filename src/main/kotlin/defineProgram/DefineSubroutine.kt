@@ -1,5 +1,6 @@
 package defineProgram
 
+import parseInstruction.SubroutineName
 import kotlin.reflect.KProperty
 
 fun ProgramDefinition.SUBROUTINE(initializeSubroutine: Subroutine.() -> Unit) =
@@ -16,7 +17,7 @@ class SubroutineDelegate(
         thisRef: Any?,
         property: KProperty<*>,
     ): SubroutineDelegate {
-        val subroutine = Subroutine(property.name).apply(initializeSubroutine)
+        val subroutine = Subroutine(SubroutineName(property.name)).apply(initializeSubroutine)
         subroutines.add(subroutine)
         return this
     }
@@ -24,13 +25,13 @@ class SubroutineDelegate(
     operator fun getValue(
         thisRef: Any?,
         property: KProperty<*>,
-    ): Subroutine = subroutines.single { it.name == property.name }
+    ): Subroutine = subroutines.single { it.name == SubroutineName(property.name) }
 }
 
 data class Subroutine(
-    val name: String,
+    val name: SubroutineName,
     val ENTRY_NODE: EntryNode = EntryNode,
     val EXIT_NODE: ExitNode = ExitNode,
-    val nodes: MutableList<Node> = mutableListOf(),
+    val nodes: MutableList<CustomNode> = mutableListOf(),
     val transitions: MutableList<Transition> = mutableListOf(),
 )
