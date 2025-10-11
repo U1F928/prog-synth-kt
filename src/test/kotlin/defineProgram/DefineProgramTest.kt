@@ -7,6 +7,7 @@ class DefineProgramTest {
     fun `test`() {
         val x =
             PROGRAM {
+                val myStack by STACK()
                 val main by SUBROUTINE {
                     val q1 by NODE()
                     val q2 by NODE()
@@ -18,6 +19,7 @@ class DefineProgramTest {
 
                     FROM(q3)
                         .ON(INPUT, 43)
+                        .ON(myStack, 324)
                         .GOTO(q1)
 
                     FROM(q1)

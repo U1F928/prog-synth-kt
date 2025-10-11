@@ -118,3 +118,12 @@ value class NodeName(
         require(isValidObjectName(name))
     }
 }
+
+@JvmInline
+value class StackName(
+    val name: String,
+) {
+    init {
+        require(isValidObjectName(name))
+    }
+}
