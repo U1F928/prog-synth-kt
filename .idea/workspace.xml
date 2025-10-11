@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="608f928b-0078-4d02-87a7-b6646b1a6f87" name="Changes" comment="added test for executing program created by custom DSL">
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/DefineProgramTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/convertProgramToEvaluationFormat/convertProgramToEvaluationFormatTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TODO-List.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +72,7 @@
     "Gradle.ParseProgramTest.test parsing of a subroutine.executor": "Run",
     "Gradle.test parsing of PushToOutputStack instruction.executor": "Run",
     "Gradle.test parsing of Transition instruction.parse correctly formatted instruction.executor": "Run",
+    "JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program.executor": "Run",
     "JUnit.ConvertProgramToEvaluationFormatTest$test execution of the converted program.test conversion of 1 to 111 and of 2 to 222.executor": "Run",
     "JUnit.ConvertProgramToEvaluationFormatTest.test a.executor": "Run",
     "JUnit.DefineProgramTest$test custom stack definition.define program with a single custom stack.executor": "Run",
@@ -682,7 +683,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760203771818</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="added test for executing program created by custom DSL">
+      <option name="closed" value="true" />
+      <created>1760203821737</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1760203821737</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
